@@ -1,0 +1,18 @@
+.row
+	.col-xs-12
+
+		%h1 Simple table
+
+		.table-responsive
+			%table.table.table-inverse.table-bordered
+				%thead
+					%tr
+						%th
+						- @indicators.each do |indicator|
+							%th= indicator.name
+				%tbody
+					- @reports.each do |report|
+						%tr
+							%td= report.company_name
+							- @indicators.each do |indicator|
+								%td= @values.amount(report.id, indicator.id)
