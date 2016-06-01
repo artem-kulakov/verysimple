@@ -1,7 +1,7 @@
 # Companies
 companies = ['Rosneft',
              'Gazprom',
-             'Lukoil']
+             'Royal Dutch Shell']
 companies.each do |company|
   Company.create!(name: company)
 end
@@ -9,7 +9,7 @@ end
 
 # Indicators
 indicators = ['Revenues',
-             'Net income',
+             'Operating income',
              'Debt']
 indicators.each do |indicator|
   Indicator.create!(name: indicator)
