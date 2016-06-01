@@ -15,6 +15,10 @@ class ReportsController < ApplicationController
   # GET /reports/new
   def new
     @report = Report.new
+    @report.values.new
+
+    @indicators = Indicator.all
+    @companies = Company.order(:name)
   end
 
   # GET /reports/1/edit
@@ -28,7 +32,7 @@ class ReportsController < ApplicationController
 
     respond_to do |format|
       if @report.save
-        format.html { redirect_to @report, notice: 'Report was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Report was successfully created.' }
         format.json { render :show, status: :created, location: @report }
       else
         format.html { render :new }
@@ -69,6 +73,6 @@ class ReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      params.require(:report).permit(:company_id)
+      params.require(:report).permit(:company_id, values_attributes: [:id, :indicator_id, :amount])
     end
 end
