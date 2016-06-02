@@ -1,6 +1,8 @@
 # Companies
 companies = ['Rosneft',
              'Gazprom',
+             'Lukoil',
+             'British Petroleum',
              'Royal Dutch Shell']
 companies.each do |company|
   Company.create!(name: company)
@@ -16,7 +18,7 @@ indicators.each do |indicator|
 end
 
 # Reports
-Company.all.each do |company|
+Company.first(3).each do |company|
 	Report.create!(company_id: company.id)
 end
 

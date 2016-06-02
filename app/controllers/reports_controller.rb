@@ -18,7 +18,9 @@ class ReportsController < ApplicationController
     @report.values.new
 
     @indicators = Indicator.all
-    @companies = Company.order(:name)
+
+    companies_without_reports = Report.joins(:company).pluck(:company_id)
+    @companies = Company.where.not(id: companies_without_reports).order(:name)
   end
 
   # GET /reports/1/edit
