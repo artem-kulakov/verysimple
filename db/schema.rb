@@ -25,16 +25,16 @@ ActiveRecord::Schema.define(version: 20160525202844) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "reports", force: :cascade do |t|
+  create_table "records", force: :cascade do |t|
     t.integer  "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "reports", ["company_id"], name: "index_reports_on_company_id"
+  add_index "records", ["company_id"], name: "index_records_on_company_id"
 
   create_table "values", force: :cascade do |t|
-    t.integer  "report_id"
+    t.integer  "record_id"
     t.integer  "indicator_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
@@ -42,6 +42,6 @@ ActiveRecord::Schema.define(version: 20160525202844) do
   end
 
   add_index "values", ["indicator_id"], name: "index_values_on_indicator_id"
-  add_index "values", ["report_id"], name: "index_values_on_report_id"
+  add_index "values", ["record_id"], name: "index_values_on_record_id"
 
 end

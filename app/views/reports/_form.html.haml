@@ -1,9 +1,9 @@
-= form_for @report do |f|
-  - if @report.errors.any?
+= form_for @record do |f|
+  - if @record.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@report.errors.count, "error")} prohibited this report from being saved:"
+      %h2= "#{pluralize(@record.errors.count, "error")} prohibited this record from being saved:"
       %ul
-        - @report.errors.full_messages.each do |msg|
+        - @record.errors.full_messages.each do |msg|
           %li= msg
 
   .form-group.row

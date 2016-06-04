@@ -1,4 +1,4 @@
-json.array!(@reports) do |report|
-  json.extract! report, :id, :company_id
-  json.url report_url(report, format: :json)
+json.array!(@records) do |record|
+  json.extract! record, :id, :company_id
+  json.url record_url(record, format: :json)
 end

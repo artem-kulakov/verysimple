@@ -1,16 +1,16 @@
 require 'test_helper'
 
-class ReportTest < ActiveSupport::TestCase
+class RecordTest < ActiveSupport::TestCase
   def setup
-    @report = Report.new(company_id: 1)
+    @record = Record.new(company_id: 1)
   end
 
   test "should be valid" do
-    assert @report.valid?
+    assert @record.valid?
   end
 
   test "company_id should be present" do
-    @report.company_id = nil
-    assert_not @report.valid?
+    @record.company_id = nil
+    assert_not @record.valid?
   end
 end

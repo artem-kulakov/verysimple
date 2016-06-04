@@ -10,10 +10,10 @@
 					- @indicators.each do |indicator|
 						%th.text-xs-right= indicator.name
 			%tbody
-				- @reports.each do |report|
+				- @records.each do |record|
 					%tr
-						%td= report.company_name
+						%td= record.company_name
 						- @indicators.each do |indicator|
-							%td.text-xs-right= number_with_delimiter(@values.amount(report.id, indicator.id), delimiter: ",")
+							%td.text-xs-right= number_with_delimiter(@values.amount(record.id, indicator.id), delimiter: ",")
 
-		= link_to 'Add', new_report_path, class: 'btn btn-primary'
+		= link_to 'Add', new_record_path, class: 'btn btn-primary'

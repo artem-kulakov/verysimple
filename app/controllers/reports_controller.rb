@@ -1,80 +1,80 @@
-class ReportsController < ApplicationController
-  before_action :set_report, only: [:show, :edit, :update, :destroy]
+class RecordsController < ApplicationController
+  before_action :set_record, only: [:show, :edit, :update, :destroy]
 
-  # GET /reports
-  # GET /reports.json
+  # GET /records
+  # GET /records.json
   def index
-    @reports = Report.all
+    @records = Record.all
   end
 
-  # GET /reports/1
-  # GET /reports/1.json
+  # GET /records/1
+  # GET /records/1.json
   def show
   end
 
-  # GET /reports/new
+  # GET /records/new
   def new
-    @report = Report.new
-    @report.values.new
+    @record = Record.new
+    @record.values.new
 
     @indicators = Indicator.all
 
-    companies_without_reports = Report.joins(:company).pluck(:company_id)
-    @companies = Company.where.not(id: companies_without_reports).order(:name)
+    companies_without_records = Record.joins(:company).pluck(:company_id)
+    @companies = Company.where.not(id: companies_without_records).order(:name)
   end
 
-  # GET /reports/1/edit
+  # GET /records/1/edit
   def edit
   end
 
-  # POST /reports
-  # POST /reports.json
+  # POST /records
+  # POST /records.json
   def create
-    @report = Report.new(report_params)
+    @record = Record.new(record_params)
 
     respond_to do |format|
-      if @report.save
-        format.html { redirect_to root_path, notice: 'Report was successfully created.' }
-        format.json { render :show, status: :created, location: @report }
+      if @record.save
+        format.html { redirect_to root_path, notice: 'Record was successfully created.' }
+        format.json { render :show, status: :created, location: @record }
       else
         format.html { render :new }
-        format.json { render json: @report.errors, status: :unprocessable_entity }
+        format.json { render json: @record.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /reports/1
-  # PATCH/PUT /reports/1.json
+  # PATCH/PUT /records/1
+  # PATCH/PUT /records/1.json
   def update
     respond_to do |format|
-      if @report.update(report_params)
-        format.html { redirect_to @report, notice: 'Report was successfully updated.' }
-        format.json { render :show, status: :ok, location: @report }
+      if @record.update(record_params)
+        format.html { redirect_to @record, notice: 'Record was successfully updated.' }
+        format.json { render :show, status: :ok, location: @record }
       else
         format.html { render :edit }
-        format.json { render json: @report.errors, status: :unprocessable_entity }
+        format.json { render json: @record.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /reports/1
-  # DELETE /reports/1.json
+  # DELETE /records/1
+  # DELETE /records/1.json
   def destroy
-    @report.destroy
+    @record.destroy
     respond_to do |format|
-      format.html { redirect_to reports_url, notice: 'Report was successfully destroyed.' }
+      format.html { redirect_to records_url, notice: 'Record was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_report
-      @report = Report.find(params[:id])
+    def set_record
+      @record = Record.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def report_params
-      params.require(:report).permit(:company_id, values_attributes: [:indicator_id, :amount])
+    def record_params
+      params.require(:record).permit(:company_id, values_attributes: [:indicator_id, :amount])
     end
 end

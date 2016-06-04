@@ -1,14 +1,14 @@
 require 'test_helper'
 
-class ReportsControllerTest < ActionController::TestCase
+class RecordsControllerTest < ActionController::TestCase
   setup do
-    @report = reports(:one)
+    @record = records(:one)
   end
 
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:reports)
+    assert_not_nil assigns(:records)
   end
 
   test "should get new" do
@@ -16,34 +16,34 @@ class ReportsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create report" do
-    assert_difference('Report.count') do
-      post :create, report: { company_id: @report.company_id }
+  test "should create record" do
+    assert_difference('Record.count') do
+      post :create, record: { company_id: @record.company_id }
     end
 
     assert_redirected_to root_path
   end
 
-  test "should show report" do
-    get :show, id: @report
+  test "should show record" do
+    get :show, id: @record
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @report
+    get :edit, id: @record
     assert_response :success
   end
 
-  test "should update report" do
-    patch :update, id: @report, report: { company_id: @report.company_id }
-    assert_redirected_to report_path(assigns(:report))
+  test "should update record" do
+    patch :update, id: @record, record: { company_id: @record.company_id }
+    assert_redirected_to record_path(assigns(:record))
   end
 
-  test "should destroy report" do
-    assert_difference('Report.count', -1) do
-      delete :destroy, id: @report
+  test "should destroy record" do
+    assert_difference('Record.count', -1) do
+      delete :destroy, id: @record
     end
 
-    assert_redirected_to reports_path
+    assert_redirected_to records_path
   end
 end

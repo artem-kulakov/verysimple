@@ -1,8 +1,8 @@
 class Value < ActiveRecord::Base
-  belongs_to :report
+  belongs_to :record
   belongs_to :indicator
 
-  def self.amount(report, indicator)
-  	where(report_id: report, indicator_id: indicator).first.amount
+  def self.amount(record, indicator)
+  	where(record_id: record, indicator_id: indicator).first.amount
   end
 end

@@ -21,17 +21,17 @@ indicators.each do |indicator|
   Indicator.create!(name: indicator)
 end
 
-# Reports
+# Records
 Company.first(3).each do |company|
-	Report.create!(company_id: company.id)
+	Record.create!(company_id: company.id)
 end
 
 # Values
 amounts = [1000, 100, 1500,
 					 2000, 200, 3000,
 					 3000, 300, 4500]
-Report.all.each do |report|
+Record.all.each do |record|
 	Indicator.all.each do |indicator|
-		Value.create!(report_id: report.id, indicator_id: indicator.id, amount: amounts.shift)
+		Value.create!(record_id: record.id, indicator_id: indicator.id, amount: amounts.shift)
 	end
 end

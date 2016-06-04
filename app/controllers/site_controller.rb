@@ -1,7 +1,7 @@
 class SiteController < ApplicationController
   def index
   	@indicators = Indicator.all
-  	@reports = Report.all
+  	@records = Record.all
   	@values = Value.all
   end
 end

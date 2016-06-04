@@ -1,4 +1,4 @@
-%h1 Listing reports
+%h1 Listing records
 
 %table
   %thead
@@ -9,13 +9,13 @@
       %th
 
   %tbody
-    - @reports.each do |report|
+    - @records.each do |record|
       %tr
-        %td= report.company
-        %td= link_to 'Show', report
-        %td= link_to 'Edit', edit_report_path(report)
-        %td= link_to 'Destroy', report, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= record.company
+        %td= link_to 'Show', record
+        %td= link_to 'Edit', edit_record_path(record)
+        %td= link_to 'Destroy', record, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Report', new_report_path
+= link_to 'New Record', new_record_path

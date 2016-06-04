@@ -1,4 +1,4 @@
-class Report < ActiveRecord::Base
+class Record < ActiveRecord::Base
   belongs_to :company
   has_many :values
   accepts_nested_attributes_for :values
