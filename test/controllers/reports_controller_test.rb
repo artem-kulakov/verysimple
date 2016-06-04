@@ -21,7 +21,7 @@ class ReportsControllerTest < ActionController::TestCase
       post :create, report: { company_id: @report.company_id }
     end
 
-    assert_redirected_to report_path(assigns(:report))
+    assert_redirected_to root_path
   end
 
   test "should show report" do
