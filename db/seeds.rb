@@ -2,6 +2,10 @@
 companies = ['Rosneft',
              'Gazprom',
              'Lukoil',
+             'Tatneft',
+             'Gazpromneft',
+             'Slavneft',
+             'Surgutneftegaz',
              'British Petroleum',
              'Royal Dutch Shell']
 companies.each do |company|

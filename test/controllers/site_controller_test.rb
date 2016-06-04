@@ -11,11 +11,11 @@ class SiteControllerTest < ActionController::TestCase
 
     ['Revenues', 'Net income'].each do |th|
 	    assert_select 'th', th
-	  end
+    end
 
     ['Rosneft', '1,000', '100', 'Gazprom', '2,000', '200'].each do |td|
 	    assert_select 'td', td
-	  end
+    end
 
     assert_select 'a', 1
     assert_select 'a', 'Add'
