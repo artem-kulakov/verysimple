@@ -16,11 +16,8 @@ class RecordsController < ApplicationController
   def new
     @record = Record.new
     @record.values.new
-
     @indicators = Indicator.all
-
-    companies_without_records = Record.joins(:company).pluck(:company_id)
-    @companies = Company.where.not(id: companies_without_records).order(:name)
+    @companies = Company.with_no_record
   end
 
   # GET /records/1/edit
