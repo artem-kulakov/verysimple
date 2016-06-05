@@ -3,17 +3,18 @@
 
 		%h1 Simple table
 
-		%table.table.table-inverse.table-bordered
-			%thead
-				%tr
-					%th
-					- @indicators.each do |indicator|
-						%th.text-xs-right= indicator.name
-			%tbody
-				- @records.each do |record|
+		.table-responsive
+			%table.table.table-inverse
+				%thead
 					%tr
-						%td= record.company_name
+						%th
 						- @indicators.each do |indicator|
-							%td.text-xs-right= number_with_delimiter(@values.amount(record.id, indicator.id), delimiter: ",")
+							%th.text-xs-right= indicator.name
+				%tbody
+					- @records.each do |record|
+						%tr
+							%td= record.company_name
+							- @indicators.each do |indicator|
+								%td.text-xs-right= number_with_delimiter(@values.amount(record.id, indicator.id), delimiter: ",")
 
 		= link_to 'Add', new_record_path, class: 'btn btn-primary'
