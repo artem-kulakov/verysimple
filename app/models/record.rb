@@ -1,6 +1,6 @@
 class Record < ActiveRecord::Base
   belongs_to :company
-  has_many :values
+  has_many :values, dependent: :destroy
   accepts_nested_attributes_for :values
 
 	validates :company_id, presence: true
