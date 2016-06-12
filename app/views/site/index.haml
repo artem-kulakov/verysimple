@@ -3,13 +3,13 @@
 
 		%h1 Simple table
 
-		%table.table.table-striped
-			%thead.thead-inverse
+		%table.table.table-inverse
+			%thead
 				%tr
 					%th
 					- @indicators.each do |indicator|
 						%th.text-xs-right= indicator.name
-					%th
+					%th.dark-background
 			%tbody
 				- @records.each do |record|
 					%tr
