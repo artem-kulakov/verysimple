@@ -22,6 +22,9 @@ class RecordsController < ApplicationController
 
   # GET /records/1/edit
   def edit
+    @indicators = Indicator.all
+    @companies = Company.all
+    @company = @record.company_id
   end
 
   # POST /records
@@ -45,7 +48,7 @@ class RecordsController < ApplicationController
   def update
     respond_to do |format|
       if @record.update(record_params)
-        format.html { redirect_to @record, notice: 'Record was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Record was successfully updated.' }
         format.json { render :show, status: :ok, location: @record }
       else
         format.html { render :edit }
@@ -72,6 +75,6 @@ class RecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def record_params
-      params.require(:record).permit(:company_id, values_attributes: [:indicator_id, :amount])
+      params.require(:record).permit(:company_id, values_attributes: [:id, :indicator_id, :amount])
     end
 end
