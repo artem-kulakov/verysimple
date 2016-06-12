@@ -3,20 +3,20 @@
 
 		%h1 Simple table
 
-		%table.table.table-inverse
+		%table.table.table-inverse.dark-background
 			%thead
 				%tr
-					%th.dark-background
+					%th
 					- @indicators.each do |indicator|
-						%th.text-xs-right.dark-background= indicator.name
-					%th.dark-background
+						%th.text-xs-right= indicator.name
+					%th
 			%tbody
 				- @records.each do |record|
 					%tr
-						%td.dark-background= record.company_name
+						%td= record.company_name
 						- @indicators.each do |indicator|
-							%td.text-xs-right.dark-background= number_with_delimiter(@values.amount(record.id, indicator.id), delimiter: ',')
-						%td.text-xs-right.text-nowrap.dark-background
+							%td.text-xs-right= number_with_delimiter(@values.amount(record.id, indicator.id), delimiter: ',')
+						%td.text-xs-right.text-nowrap
 							= link_to 'Edit', edit_record_path(record), :class => 'btn btn-success btn-sm'
 							= link_to 'Delete', record, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
 
