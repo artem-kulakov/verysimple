@@ -14,7 +14,7 @@
       = f.label :company, class: 'col-xs-5 col-left form-control-label'
       .col-xs-7.col-right
         = f.select :company_id, options_from_collection_for_select(@companies, :id, :name), {}, {class: "form-control c-select"}
-        = link_to 'Add new company', root_path, class: 'btn btn-link btn-sm'
+        = link_to 'Add company', new_company_path, class: 'btn btn-link btn-sm'
 
     - @indicators.each do |indicator|
       .form-group.row

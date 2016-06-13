@@ -6,8 +6,13 @@
         - @company.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .actions
-    = f.submit 'Save'
+  .form-group.row
+    = f.label :name, class: 'col-xs-5 col-left form-control-label'
+    .col-xs-7.col-right
+      = f.text_field :name, class: 'form-control'
+
+  .form-group.row
+    .col-xs-5.col-left
+    .col-xs-7.col-right
+      = f.submit 'Save', class: 'btn btn-primary'
+      = link_to 'Cancel', new_record_path, class: 'btn btn-secondary'

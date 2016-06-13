@@ -1,13 +1,7 @@
 # Companies
 companies = ['Rosneft',
              'Gazprom',
-             'Lukoil',
-             'Tatneft',
-             'Gazpromneft',
-             'Slavneft',
-             'Surgutneftegaz',
-             'British Petroleum',
-             'Royal Dutch Shell']
+             'Lukoil']
 companies.each do |company|
   Company.create!(name: company)
 end
