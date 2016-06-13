@@ -1,5 +1,6 @@
 class Company < ActiveRecord::Base
   has_one :record
+  validates :name, presence: true, uniqueness: true
 
   def self.with_record
   	joins(:record).pluck(:company_id)

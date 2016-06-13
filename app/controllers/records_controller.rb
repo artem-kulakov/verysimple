@@ -18,6 +18,7 @@ class RecordsController < ApplicationController
     @record.values.new
     @indicators = Indicator.all
     @companies = Company.with_no_record
+    @company = params[:company]
   end
 
   # GET /records/1/edit
