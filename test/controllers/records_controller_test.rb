@@ -36,7 +36,7 @@ class RecordsControllerTest < ActionController::TestCase
 
   test "should update record" do
     patch :update, id: @record, record: { company_id: @record.company_id }
-    assert_redirected_to record_path(assigns(:record))
+    assert_redirected_to root_path
   end
 
   test "should destroy record" do
