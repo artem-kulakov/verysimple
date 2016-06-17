@@ -1,7 +1,7 @@
 .row
 	.col-xs-12
 
-		%h1 Simple table
+		%h1 All records
 
 		.table-responsive
 			%table.table.table-inverse.dark-background
@@ -21,4 +21,4 @@
 								= link_to 'Edit', edit_record_path(record), :class => 'btn btn-success btn-sm'
 								= link_to 'Delete', record, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
 
-		= link_to 'Add', new_record_path, class: 'btn btn-primary'
+		= link_to 'New record', new_record_path, class: 'btn btn-primary'

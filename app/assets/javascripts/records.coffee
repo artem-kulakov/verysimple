@@ -4,6 +4,7 @@
 
 ready = ->
 
+	# Disappearing notices
 	$('.alert').delay(3000).slideUp()
 
 # Fix turbolinks bug

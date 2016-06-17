@@ -17,7 +17,7 @@ class SiteControllerTest < ActionController::TestCase
 	    assert_select 'td', td
     end
 
-    assert_select 'a', 'Add'
+    assert_select 'a', 'New record'
   end
 
 end
