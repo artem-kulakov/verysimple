@@ -2,8 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+# Fixing the turbolinks bug
 $(document).on 'ready page:load', ->
 
 	# Disappearing notices
-	$('.alert').delay(3000).slideUp()
+	$('.notice').delay(3000).slideUp()
 	
