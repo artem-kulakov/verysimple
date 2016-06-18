@@ -8,7 +8,19 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body.container
-    - if notice
-      .notice.alert.alert-success= notice
-    = yield
+
+  %body
+
+    %nav.navbar.navbar-dark.navbar-full.bg-warning
+      .nav.navbar-nav
+        - if controller_name == 'site'
+          - home_active = 'active'
+        - elsif controller_name == 'companies'
+          - companies_active = 'active'
+        = link_to 'Home', root_path, class: "nav-item nav-link #{home_active}"
+        = link_to 'Companies', companies_path, class: "nav-item nav-link #{companies_active}"
+
+    .container
+      - if notice
+        .notice.alert.alert-success= notice
+      = yield
