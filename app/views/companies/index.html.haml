@@ -1,21 +1,21 @@
-%h1 Listing companies
+.row
+  .col-xs-12
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
-      %th
+    %h1 Listing companies
 
-  %tbody
-    - @companies.each do |company|
-      %tr
-        %td= company.name
-        %td= link_to 'Show', company
-        %td= link_to 'Edit', edit_company_path(company)
-        %td= link_to 'Destroy', company, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    .table-responsive
+      %table.table.table-inverse.dark-background
+        %thead
+          %tr
+            %th Name
+            %th
+        %tbody
+          - @companies.each do |company|
+            %tr
+              %td= company.name
+              %td.text-xs-right.text-nowrap
+                = link_to 'Show', company, :class => 'btn btn-secondary btn-sm'
+                = link_to 'Edit', edit_company_path(company), :class => 'btn btn-success btn-sm'
+                = link_to 'Destroy', company, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
 
-%br
-
-= link_to 'New Company', new_company_path
+    = link_to 'New company', new_company_path, class: 'btn btn-primary'
