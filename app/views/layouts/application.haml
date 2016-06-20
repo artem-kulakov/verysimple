@@ -13,12 +13,8 @@
 
     %nav.navbar.navbar-light.navbar-full.bg-faded
       .nav.navbar-nav
-        - if controller_name == 'site'
-          - home_active = 'active'
-        - elsif controller_name == 'companies'
-          - companies_active = 'active'
-        = link_to 'Home', root_path, class: "nav-item nav-link #{home_active}"
-        = link_to 'Companies', companies_path, class: "nav-item nav-link #{companies_active}"
+        = link_to 'Home', root_path, class: "nav-item nav-link #{@site_active}"
+        = link_to 'Companies', companies_path, class: "nav-item nav-link #{@companies_active}"
 
     .container
       - if notice
