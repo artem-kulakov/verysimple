@@ -15,7 +15,4 @@
     .col-xs-5.col-left
     .col-xs-7.col-right
       = f.submit 'Save', class: 'btn btn-primary'
-      - if params[:new_record]
-        = link_to 'Cancel', new_record_path, class: 'btn btn-secondary'
-      - else
-        = link_to 'Cancel', companies_path, class: 'btn btn-secondary'
+      = link_to 'Cancel', send(@path), class: 'btn btn-secondary'

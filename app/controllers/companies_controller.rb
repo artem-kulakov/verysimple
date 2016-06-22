@@ -15,6 +15,13 @@ class CompaniesController < ApplicationController
   # GET /companies/new
   def new
     @company = Company.new
+
+    # path for 'Cancel' button
+    if params[:new_record]
+      @path = 'new_record_path'
+    else
+      @path = 'companies_path'
+    end
   end
 
   # GET /companies/1/edit
