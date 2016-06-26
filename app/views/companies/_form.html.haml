@@ -10,6 +10,9 @@
     = f.label :name, class: 'col-xs-5 col-left form-control-label'
     .col-xs-7.col-right
       = f.text_field :name, class: 'form-control', :autofocus => true
+      
+  - if @new_record
+    = hidden_field_tag(:new_record, true)
 
   .form-group.row
     .col-xs-5.col-left

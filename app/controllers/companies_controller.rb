@@ -19,6 +19,7 @@ class CompaniesController < ApplicationController
     # path for 'Cancel' button
     if params[:new_record]
       @path = 'new_record_path'
+      @new_record = true
     else
       @path = 'companies_path'
     end
@@ -35,7 +36,11 @@ class CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.save
-        format.html { redirect_to new_record_path(company: @company.id), notice: 'Company was successfully created.' }
+        if params[:new_record]
+          format.html { redirect_to new_record_path(company: @company.id), notice: 'Company was successfully created.' }
+        else
+          format.html { redirect_to companies_path, notice: 'Company was successfully created.' }
+        end
         format.json { render :show, status: :created, location: @company }
       else
         format.html { render :new }
