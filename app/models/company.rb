@@ -1,5 +1,5 @@
 class Company < ActiveRecord::Base
-  has_one :record
+  has_one :record, dependent: :destroy
   validates :name, presence: true, uniqueness: true
 
   def self.with_record
