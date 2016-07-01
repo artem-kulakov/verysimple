@@ -28,7 +28,7 @@ class IndicatorsController < ApplicationController
 
     respond_to do |format|
       if @indicator.save
-        format.html { redirect_to @indicator, notice: 'Indicator was successfully created.' }
+        format.html { redirect_to indicators_path, notice: 'Indicator was successfully created.' }
         format.json { render :show, status: :created, location: @indicator }
       else
         format.html { render :new }
