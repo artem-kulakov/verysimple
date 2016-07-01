@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :indicators
   resources :companies
   root 'site#index'
   resources :records
