@@ -1,21 +1,22 @@
-%h1 Listing indicators
+- @title = 'Indicators'
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
-      %th
+.row
+  .col-xs-12
 
-  %tbody
-    - @indicators.each do |indicator|
-      %tr
-        %td= indicator.name
-        %td= link_to 'Show', indicator
-        %td= link_to 'Edit', edit_indicator_path(indicator)
-        %td= link_to 'Destroy', indicator, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    %h1 Listing indicators
 
-%br
+    .table-responsive
+      %table.table.table-inverse.dark-background
+        %thead
+          %tr
+            %th Name
+            %th
+        %tbody
+          - @indicators.each do |indicator|
+            %tr
+              %td= indicator.name
+              %td.text-xs-right.text-nowrap
+                = link_to 'Edit', edit_indicator_path(indicator), :class => 'btn btn-success btn-sm'
+                = link_to 'Destroy', indicator, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
 
-= link_to 'New Indicator', new_indicator_path
+    = link_to 'New indicator', new_indicator_path, class: 'btn btn-primary'
