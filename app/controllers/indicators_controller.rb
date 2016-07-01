@@ -42,7 +42,7 @@ class IndicatorsController < ApplicationController
   def update
     respond_to do |format|
       if @indicator.update(indicator_params)
-        format.html { redirect_to @indicator, notice: 'Indicator was successfully updated.' }
+        format.html { redirect_to indicators_path, notice: 'Indicator was successfully updated.' }
         format.json { render :show, status: :ok, location: @indicator }
       else
         format.html { render :edit }
