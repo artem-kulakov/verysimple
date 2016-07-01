@@ -17,6 +17,6 @@
               %td= indicator.name
               %td.text-xs-right.text-nowrap
                 = link_to 'Edit', edit_indicator_path(indicator), :class => 'btn btn-success btn-sm'
-                = link_to 'Destroy', indicator, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
+                = link_to 'Delete', indicator, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
 
     = link_to 'New indicator', new_indicator_path, class: 'btn btn-primary'
