@@ -10,3 +10,9 @@ $(document).on 'ready page:load', ->
 	  $('.sortable').sortable()
 	  $('.sortable').disableSelection()
 	  return
+
+  # Reorder
+  $('.reorder').click ->
+    for element, index in $('.order')
+      do ->
+        element.value = index

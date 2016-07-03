@@ -4,7 +4,18 @@ class IndicatorsController < ApplicationController
   # GET /indicators
   # GET /indicators.json
   def index
-    @indicators = Indicator.all
+    @indicators = Indicator.order(:order)
+  end
+
+  # GET /indicators/all/edit
+  def edit_all
+    @indicators = Indicator.order(:order)
+  end
+
+  # PUT /indicators/all
+  def update_all
+    Indicator.update(params['indicator'].keys, params['indicator'].values)
+    redirect_to indicators_path
   end
 
   # GET /indicators/1
@@ -69,6 +80,6 @@ class IndicatorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def indicator_params
-      params.require(:indicator).permit(:name)
+      params.require(:indicator).permit(:name, :order)
     end
 end
