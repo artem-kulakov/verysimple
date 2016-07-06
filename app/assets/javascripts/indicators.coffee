@@ -5,11 +5,8 @@
 # Fixing the turbolinks bug
 $(document).on 'ready page:load', ->
 
-	# Sortable
-	$ ->
-	  $('.sortable').sortable()
-	  $('.sortable').disableSelection()
-	  return
+  # Sortable
+  $('.sortable').sortable().disableSelection()
 
   # Reorder
   $('.reorder').click ->
