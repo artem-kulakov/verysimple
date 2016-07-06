@@ -6,7 +6,12 @@
 $(document).on 'ready page:load', ->
 
   # Sortable
-  $('.sortable').sortable().disableSelection()
+  fixWidthHelper = (e, ui) ->
+    ui.children().each ->
+      $(this).width $(this).width()
+      return
+    ui
+  $('.sortable').sortable(helper: fixWidthHelper).disableSelection()
 
   # Reorder
   $('.reorder').click ->
