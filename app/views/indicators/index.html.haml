@@ -5,19 +5,25 @@
 
     %h1 Listing indicators
 
-    .table-responsive
-      %table.table.table-inverse.dark-background
-        %thead
-          %tr
-            %th Name
-            %th
-        %tbody.sortable
-          - @indicators.each do |indicator|
-            %tr
-              %td= indicator.name
-              %td.text-xs-right.text-nowrap
-                = link_to 'Edit', edit_indicator_path(indicator), :class => 'btn btn-success btn-sm'
-                = link_to 'Delete', indicator, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
+    = form_for :indicator, :url => update_all_path(industry: session[:industry]), :html => { :method => :put } do
 
-    = link_to 'New indicator', new_indicator_path, class: 'btn btn-primary'
-    = link_to 'Change the order', edit_all_path, class: 'btn btn-success'
+      .table-responsive
+        %table.table.table-inverse.dark-background
+          %thead
+            %tr
+              %th Name
+              %th
+          %tbody.sortable
+            - @indicators.each do |indicator|
+              = fields_for "indicator[]", indicator do |indicator_fields|
+                %tr
+                  %td
+                    = indicator.name
+                    = indicator_fields.hidden_field :order, class: :order
+                  %td.text-xs-right.text-nowrap
+                    = link_to 'Edit', edit_indicator_path(indicator), :class => 'btn btn-success btn-sm'
+                    = link_to 'Delete', indicator, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
+
+      = link_to 'New indicator', new_indicator_path, class: 'btn btn-primary'
+      = submit_tag 'Save sorting', class: "btn btn-warning reorder save-sorting"
+      = link_to 'Cancel', indicators_path, class: 'btn btn-secondary save-sorting'
