@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root 'site#index'
 
-  match 'indicators/all/edit' => 'indicators#edit_all', :as => :edit_all, :via => :get
   match 'indicators/all' => 'indicators#update_all', :as => :update_all, :via => :put
 
   resources :indicators

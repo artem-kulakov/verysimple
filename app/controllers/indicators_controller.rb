@@ -7,11 +7,6 @@ class IndicatorsController < ApplicationController
     @indicators = Indicator.order(:order)
   end
 
-  # GET /indicators/all/edit
-  def edit_all
-    @indicators = Indicator.order(:order)
-  end
-
   # PUT /indicators/all
   def update_all
     Indicator.update(params['indicator'].keys, params['indicator'].values)
