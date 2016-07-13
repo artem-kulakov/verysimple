@@ -16,14 +16,14 @@ class RecordsController < ApplicationController
   def new
     @record = Record.new
     @record.values.new
-    @indicators = Indicator.all
+    @indicators = Indicator.order(:order)
     @companies = Company.with_no_record
     @company = params[:company]
   end
 
   # GET /records/1/edit
   def edit
-    @indicators = Indicator.all
+    @indicators = Indicator.order(:order)
     @companies = Company.all
     @company = @record.company_id
   end
