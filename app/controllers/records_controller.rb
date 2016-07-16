@@ -26,6 +26,13 @@ class RecordsController < ApplicationController
     @indicators = Indicator.order(:order)
     @companies = Company.all
     @company = @record.company_id
+
+    # Build values for new indicators
+    @indicators.each do |indicator|
+      if @record.values.where(indicator_id: indicator.id).empty?
+        @record.values.new(indicator_id: indicator.id)
+      end
+    end
   end
 
   # POST /records
