@@ -9,7 +9,7 @@ $(document).on 'ready page:load', ->
   # Sortable
 
   # Hide the button
-  $('.save-sorting').hide()
+  $('.save-ordering').hide()
   
   # Helper
   fixWidthHelper = (e, ui) ->
@@ -25,7 +25,7 @@ $(document).on 'ready page:load', ->
   $('.sortable').sortable stop: ->
     for element, index in $('.order')
       if element.value isnt index.toString()
-        $('.save-sorting').fadeIn()
+        $('.save-ordering').fadeIn()
         break
 
 
