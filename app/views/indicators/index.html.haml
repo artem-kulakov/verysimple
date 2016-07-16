@@ -5,6 +5,8 @@
 
     %h1 Listing indicators
 
+    .alert.alert-success You can reorder indicators using the mouse.
+
     = form_for :indicator, :url => update_all_path(industry: session[:industry]), :html => { :method => :put } do
 
       .table-responsive
@@ -25,5 +27,5 @@
                     = link_to 'Delete', indicator, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
 
       = link_to 'New indicator', new_indicator_path, class: 'btn btn-primary'
-      = submit_tag 'Save sorting', class: "btn btn-warning reorder save-sorting"
+      = submit_tag 'Save ordering', class: "btn btn-warning reorder save-sorting"
       = link_to 'Cancel', indicators_path, class: 'btn btn-secondary save-sorting'
