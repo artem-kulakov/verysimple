@@ -6,7 +6,7 @@
 $(document).on 'ready page:load', ->
 
 
-  # Sortable
+  # Reordering
 
   # Hide the button
   $('.save-ordering').hide()
@@ -18,7 +18,7 @@ $(document).on 'ready page:load', ->
       return
     ui
   
-  # Sortable itself
+  # Sortable
   $('.sortable').sortable(helper: fixWidthHelper).disableSelection()
   
   # Show the button

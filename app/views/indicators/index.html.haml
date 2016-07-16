@@ -7,7 +7,7 @@
 
     .alert.alert-success You can reorder indicators using the mouse.
 
-    = form_for :indicator, :url => update_all_path(industry: session[:industry]), :html => { :method => :put } do
+    = form_for :indicator, :url => ordering_indicators_path, :html => { :method => :put } do
 
       .table-responsive
         %table.table.table-inverse.dark-background
