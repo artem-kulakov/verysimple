@@ -20,7 +20,7 @@ class IndicatorsController < ApplicationController
 
   # GET /indicators/new
   def new
-    @indicator = Indicator.new
+    @indicator = Indicator.new(order: Indicator.count)
   end
 
   # GET /indicators/1/edit

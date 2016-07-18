@@ -10,6 +10,7 @@
     = f.label :name, class: 'col-xs-5 col-left form-control-label'
     .col-xs-7.col-right
       = f.text_field :name, class: 'form-control', :autofocus => true
+      = f.hidden_field :order, value: @indicator.order
   
   .form-group.row
     .col-xs-5.col-left
