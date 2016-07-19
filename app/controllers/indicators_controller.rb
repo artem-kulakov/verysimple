@@ -9,8 +9,13 @@ class IndicatorsController < ApplicationController
 
   # PUT /indicators/ordering
   def ordering
-    Indicator.update(params['indicator'].keys, params['indicator'].values)
-    redirect_to indicators_path
+    respond_to do |format|
+      if Indicator.update(params['indicator'].keys, params['indicator'].values)
+        format.html { redirect_to indicators_path }
+      else
+        format.html { render :index }
+      end
+    end
   end
 
   # GET /indicators/1
