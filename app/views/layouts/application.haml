@@ -12,10 +12,11 @@
   %body
 
     %nav.navbar.navbar-light.navbar-full.bg-faded
-      .nav.navbar-nav
-        = link_to 'Home', root_path, class: "nav-item nav-link #{@site_active}"
-        = link_to 'Companies', companies_path, class: "nav-item nav-link #{@companies_active}"
-        = link_to 'Indicators', indicators_path, class: "nav-item nav-link #{@indicators_active}"
+      .container
+        .nav.navbar-nav
+          = link_to 'Home', root_path, class: "nav-item nav-link #{@site_active}"
+          = link_to 'Companies', companies_path, class: "nav-item nav-link #{@companies_active}"
+          = link_to 'Indicators', indicators_path, class: "nav-item nav-link #{@indicators_active}"
 
     .container
       - if notice
@@ -24,4 +25,4 @@
 
     %footer.footer
       .container
-        %span.text-muted Place sticky footer content here.
+        %span.text-muted &copy; Artem Kulakov
