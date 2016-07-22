@@ -15,5 +15,5 @@
   .form-group.row
     .col-xs-5.col-left
     .col-xs-7.col-right
-      = f.submit 'Save', class: 'btn btn-primary'
+      = f.submit 'Save', class: "btn btn-#{@color}"
       = link_to 'Cancel', indicators_path, class: 'btn btn-secondary'

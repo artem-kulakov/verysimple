@@ -3,9 +3,18 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :set_active_nav_item
+  before_action :set_active_nav_item, :foo
 
   def set_active_nav_item
-  	instance_variable_set("@#{controller_name}_active", 'active')
+    instance_variable_set("@#{controller_name}_active", 'active')
+  end
+
+  def foo
+    @color = case action_name
+    when 'new'
+      'primary'
+    when 'edit'
+      'success'
+    end
   end
 end

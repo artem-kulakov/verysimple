@@ -17,10 +17,6 @@
   .form-group.row
     .col-xs-5.col-left
     .col-xs-7.col-right
-      - if action_name == 'new'
-        - color = 'primary'
-      - else
-        - color = 'success'
-
-      = f.submit 'Save', class: "btn btn-#{color}"
+      = f.submit 'Save', class: "btn btn-#{@color}"
       = link_to 'Cancel', send(@path), class: 'btn btn-secondary'
+      
