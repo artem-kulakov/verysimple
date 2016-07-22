@@ -26,6 +26,7 @@
                     = link_to 'Edit', edit_indicator_path(indicator), :class => 'btn btn-success btn-sm'
                     = link_to 'Delete', indicator, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
 
-      = link_to 'New indicator', new_indicator_path, class: 'btn btn-primary'
-      = submit_tag 'Save ordering', class: "btn btn-warning reorder save-ordering"
-      = link_to 'Cancel', indicators_path, class: 'btn btn-secondary save-ordering'
+      .form-group
+        = link_to 'New indicator', new_indicator_path, class: 'btn btn-primary'
+        = submit_tag 'Save ordering', class: "btn btn-warning reorder save-ordering"
+        = link_to 'Cancel', indicators_path, class: 'btn btn-secondary save-ordering'
