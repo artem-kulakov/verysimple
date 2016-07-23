@@ -5,7 +5,7 @@
 
     %h1 Listing indicators
 
-    = form_for :indicator, :url => ordering_indicators_path, :html => { :method => :put } do
+    = form_for :indicator, :url => update_order_indicators_path, :html => { :method => :put } do
 
       .table-responsive
         %table.table.table-inverse.dark-background
@@ -27,5 +27,5 @@
       .form-group
         = link_to 'New indicator', new_indicator_path, class: 'btn btn-primary'
         = link_to 'Reorder indicators', indicators_path, class: 'btn btn-success'
-        = submit_tag 'Save ordering', class: "btn btn-warning reorder save-ordering"
-        = link_to 'Cancel', indicators_path, class: 'btn btn-secondary save-ordering'
+        = submit_tag 'Save', class: "btn btn-warning reorder update-order"
+        = link_to 'Cancel', indicators_path, class: 'btn btn-secondary update-order'

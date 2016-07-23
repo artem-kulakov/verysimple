@@ -7,8 +7,8 @@ class IndicatorsController < ApplicationController
     @indicators = Indicator.order(:order)
   end
 
-  # PUT /indicators/ordering
-  def ordering
+  # PUT /indicators/update_order
+  def update_order
     respond_to do |format|
       if Indicator.update(params['indicator'].keys, params['indicator'].values)
         format.html { redirect_to indicators_path }

@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   resources :indicators do
     collection do
-      put 'ordering'
+      get 'reorder'
+      put 'update_order'
     end
   end
   resources :companies
