@@ -1,0 +1,29 @@
+- @title = 'Reordering indicators'
+
+.row
+  .col-xs-12
+
+    %h1 Reordering indicators
+
+    = form_for :indicator, :url => update_order_indicators_path, :html => { :method => :put } do
+
+      .table-responsive
+        %table.table.table-inverse.dark-background
+          %thead
+            %tr
+              %th Name
+              %th
+          %tbody.sortable
+            - @indicators.each do |indicator|
+              = fields_for "indicator[]", indicator do |indicator_fields|
+                %tr
+                  %td
+                    = indicator.name
+                    = indicator_fields.hidden_field :order, class: :order
+                  %td.text-xs-right.text-nowrap
+                    = link_to 'Edit', edit_indicator_path(indicator), :class => 'btn btn-success btn-sm'
+                    = link_to 'Delete', indicator, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
+
+      .form-group
+        = submit_tag 'Save', class: 'btn btn-success reorder'
+        = link_to 'Cancel', indicators_path, class: 'btn btn-secondary'

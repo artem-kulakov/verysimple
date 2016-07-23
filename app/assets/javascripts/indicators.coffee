@@ -8,9 +8,6 @@ $(document).on 'ready page:load', ->
 
   # Reordering
 
-  # Hide the button
-  $('.update-order').hide()
-  
   # Helper
   fixWidthHelper = (e, ui) ->
     ui.children().each ->
@@ -20,17 +17,8 @@ $(document).on 'ready page:load', ->
   
   # Sortable
   $('.sortable').sortable(helper: fixWidthHelper).disableSelection()
-  
-  # Show the button
-  $('.sortable').sortable stop: ->
-    for element, index in $('.order')
-      if element.value isnt index.toString()
-        $('.update-order').fadeIn()
-        break
-
 
   # Reorder
-
   $('.reorder').click ->
     for element, index in $('.order')
       do ->

@@ -5,27 +5,21 @@
 
     %h1 Listing indicators
 
-    = form_for :indicator, :url => update_order_indicators_path, :html => { :method => :put } do
-
-      .table-responsive
-        %table.table.table-inverse.dark-background
-          %thead
+    .table-responsive
+      %table.table.table-inverse.dark-background
+        %thead
+          %tr
+            %th Name
+            %th
+        %tbody
+          - @indicators.each do |indicator|
             %tr
-              %th Name
-              %th
-          %tbody.sortable
-            - @indicators.each do |indicator|
-              = fields_for "indicator[]", indicator do |indicator_fields|
-                %tr
-                  %td
-                    = indicator.name
-                    = indicator_fields.hidden_field :order, class: :order
-                  %td.text-xs-right.text-nowrap
-                    = link_to 'Edit', edit_indicator_path(indicator), :class => 'btn btn-success btn-sm'
-                    = link_to 'Delete', indicator, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
+              %td
+                = indicator.name
+              %td.text-xs-right.text-nowrap
+                = link_to 'Edit', edit_indicator_path(indicator), :class => 'btn btn-success btn-sm'
+                = link_to 'Delete', indicator, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
 
       .form-group
         = link_to 'New indicator', new_indicator_path, class: 'btn btn-primary'
-        = link_to 'Reorder indicators', indicators_path, class: 'btn btn-success'
-        = submit_tag 'Save', class: "btn btn-warning reorder update-order"
-        = link_to 'Cancel', indicators_path, class: 'btn btn-secondary update-order'
+        = link_to 'Reorder indicators', reorder_indicators_path, class: 'btn btn-success'

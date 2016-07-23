@@ -7,17 +7,6 @@ class IndicatorsController < ApplicationController
     @indicators = Indicator.order(:order)
   end
 
-  # PUT /indicators/update_order
-  def update_order
-    respond_to do |format|
-      if Indicator.update(params['indicator'].keys, params['indicator'].values)
-        format.html { redirect_to indicators_path }
-      else
-        format.html { render :index }
-      end
-    end
-  end
-
   # GET /indicators/1
   # GET /indicators/1.json
   def show
@@ -30,6 +19,11 @@ class IndicatorsController < ApplicationController
 
   # GET /indicators/1/edit
   def edit
+  end
+
+  # GET /indicators/reorder
+  def reorder
+    @indicators = Indicator.order(:order)
   end
 
   # POST /indicators
@@ -58,6 +52,17 @@ class IndicatorsController < ApplicationController
       else
         format.html { render :edit }
         format.json { render json: @indicator.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /indicators/update_order
+  def update_order
+    respond_to do |format|
+      if Indicator.update(params['indicator'].keys, params['indicator'].values)
+        format.html { redirect_to indicators_path }
+      else
+        format.html { render :index }
       end
     end
   end
