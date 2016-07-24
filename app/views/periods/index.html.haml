@@ -1,22 +1,22 @@
-- @title = 'Dates'
+- @title = 'Periods'
 
 .row
   .col-xs-12
 
-    %h1 Listing dates
+    %h1 Listing periods
 
     .table-responsive
       %table.table.table-inverse.dark-background
         %thead
           %tr
-            %th Date
+            %th Ending
             %th
         %tbody
           - @periods.each do |period|
             %tr
-              %td= period.period
+              %td= period.ending
               %td.text-xs-right.text-nowrap
                 = link_to 'Edit', edit_period_path(period), :class => 'btn btn-success btn-sm'
                 = link_to 'Delete', period, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
 
-    = link_to 'New date', new_period_path, class: 'btn btn-primary'
+    = link_to 'New period', new_period_path, class: 'btn btn-primary'

@@ -1,7 +1,7 @@
 class CreatePeriods < ActiveRecord::Migration
   def change
     create_table :periods do |t|
-      t.date :period
+      t.date :ending
 
       t.timestamps null: false
     end

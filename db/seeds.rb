@@ -30,7 +30,7 @@ Record.all.each do |record|
 	end
 end
 
-# Dates
+# Periods
 ['2015-12-31', '2014-12-31'].each do |period|
 	Period.create!(period: period)
 end

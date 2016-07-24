@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20160724092514) do
   end
 
   create_table "periods", force: :cascade do |t|
-    t.date     "period"
+    t.date     "ending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
