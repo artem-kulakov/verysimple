@@ -1,2 +1,2 @@
-class Day < ActiveRecord::Base
+class Period < ActiveRecord::Base
 end

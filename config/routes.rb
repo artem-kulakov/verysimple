@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :days
+  resources :periods
   root 'site#index'
 
   resources :indicators do

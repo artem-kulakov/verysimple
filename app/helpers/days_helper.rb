@@ -1,2 +1,2 @@
-module DaysHelper
+module PeriodsHelper
 end

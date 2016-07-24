@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DayTest < ActiveSupport::TestCase
+class PeriodTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

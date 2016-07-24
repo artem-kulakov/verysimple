@@ -1,4 +1,4 @@
-json.array!(@days) do |day|
-  json.extract! day, :id, :day
-  json.url day_url(day, format: :json)
+json.array!(@periods) do |period|
+  json.extract! period, :id, :period
+  json.url period_url(period, format: :json)
 end

@@ -1,1 +1,1 @@
-json.extract! @day, :id, :day, :created_at, :updated_at
+json.extract! @period, :id, :period, :created_at, :updated_at

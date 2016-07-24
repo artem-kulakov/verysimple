@@ -1,14 +1,14 @@
 require 'test_helper'
 
-class DaysControllerTest < ActionController::TestCase
+class PeriodsControllerTest < ActionController::TestCase
   setup do
-    @day = days(:one)
+    @period = periods(:one)
   end
 
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:days)
+    assert_not_nil assigns(:periods)
   end
 
   test "should get new" do
@@ -16,34 +16,34 @@ class DaysControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create day" do
-    assert_difference('Day.count') do
-      post :create, day: { day: @day.day }
+  test "should create period" do
+    assert_difference('Period.count') do
+      post :create, period: { period: @period.period }
     end
 
-    assert_redirected_to day_path(assigns(:day))
+    assert_redirected_to period_path(assigns(:period))
   end
 
-  test "should show day" do
-    get :show, id: @day
+  test "should show period" do
+    get :show, id: @period
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @day
+    get :edit, id: @period
     assert_response :success
   end
 
-  test "should update day" do
-    patch :update, id: @day, day: { day: @day.day }
-    assert_redirected_to day_path(assigns(:day))
+  test "should update period" do
+    patch :update, id: @period, period: { period: @period.period }
+    assert_redirected_to period_path(assigns(:period))
   end
 
-  test "should destroy day" do
-    assert_difference('Day.count', -1) do
-      delete :destroy, id: @day
+  test "should destroy period" do
+    assert_difference('Period.count', -1) do
+      delete :destroy, id: @period
     end
 
-    assert_redirected_to days_path
+    assert_redirected_to periods_path
   end
 end

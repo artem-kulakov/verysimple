@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20160724092514) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "days", force: :cascade do |t|
-    t.date     "day"
+  create_table "periods", force: :cascade do |t|
+    t.date     "period"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

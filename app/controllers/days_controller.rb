@@ -1,74 +1,74 @@
-class DaysController < ApplicationController
-  before_action :set_day, only: [:show, :edit, :update, :destroy]
+class PeriodsController < ApplicationController
+  before_action :set_period, only: [:show, :edit, :update, :destroy]
 
-  # GET /days
-  # GET /days.json
+  # GET /periods
+  # GET /periods.json
   def index
-    @days = Day.all
+    @periods = Period.all
   end
 
-  # GET /days/1
-  # GET /days/1.json
+  # GET /periods/1
+  # GET /periods/1.json
   def show
   end
 
-  # GET /days/new
+  # GET /periods/new
   def new
-    @day = Day.new
+    @period = Period.new
   end
 
-  # GET /days/1/edit
+  # GET /periods/1/edit
   def edit
   end
 
-  # POST /days
-  # POST /days.json
+  # POST /periods
+  # POST /periods.json
   def create
-    @day = Day.new(day_params)
+    @period = Period.new(period_params)
 
     respond_to do |format|
-      if @day.save
-        format.html { redirect_to @day, notice: 'Day was successfully created.' }
-        format.json { render :show, status: :created, location: @day }
+      if @period.save
+        format.html { redirect_to @period, notice: 'Period was successfully created.' }
+        format.json { render :show, status: :created, location: @period }
       else
         format.html { render :new }
-        format.json { render json: @day.errors, status: :unprocessable_entity }
+        format.json { render json: @period.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /days/1
-  # PATCH/PUT /days/1.json
+  # PATCH/PUT /periods/1
+  # PATCH/PUT /periods/1.json
   def update
     respond_to do |format|
-      if @day.update(day_params)
-        format.html { redirect_to @day, notice: 'Day was successfully updated.' }
-        format.json { render :show, status: :ok, location: @day }
+      if @period.update(period_params)
+        format.html { redirect_to @period, notice: 'Period was successfully updated.' }
+        format.json { render :show, status: :ok, location: @period }
       else
         format.html { render :edit }
-        format.json { render json: @day.errors, status: :unprocessable_entity }
+        format.json { render json: @period.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /days/1
-  # DELETE /days/1.json
+  # DELETE /periods/1
+  # DELETE /periods/1.json
   def destroy
-    @day.destroy
+    @period.destroy
     respond_to do |format|
-      format.html { redirect_to days_url, notice: 'Day was successfully destroyed.' }
+      format.html { redirect_to periods_url, notice: 'Period was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_day
-      @day = Day.find(params[:id])
+    def set_period
+      @period = Period.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def day_params
-      params.require(:day).permit(:day)
+    def period_params
+      params.require(:period).permit(:period)
     end
 end

@@ -1,7 +1,7 @@
-class CreateDays < ActiveRecord::Migration
+class CreatePeriods < ActiveRecord::Migration
   def change
-    create_table :days do |t|
-      t.date :day
+    create_table :periods do |t|
+      t.date :period
 
       t.timestamps null: false
     end

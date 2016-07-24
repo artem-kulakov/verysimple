@@ -31,6 +31,6 @@ Record.all.each do |record|
 end
 
 # Dates
-['2015-12-31', '2014-12-31'].each do |day|
-	Day.create!(day: day)
+['2015-12-31', '2014-12-31'].each do |period|
+	Period.create!(period: period)
 end
