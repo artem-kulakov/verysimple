@@ -29,3 +29,8 @@ Record.all.each do |record|
 		Value.create!(record_id: record.id, indicator_id: indicator.id, amount: amounts.shift)
 	end
 end
+
+# Dates
+['2015-12-31', '2014-12-31'].each do |day|
+	Day.create!(day: day)
+end
