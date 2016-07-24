@@ -1,21 +1,22 @@
-%h1 Listing days
+- @title = 'Dates'
 
-%table
-  %thead
-    %tr
-      %th Day
-      %th
-      %th
-      %th
+.row
+  .col-xs-12
 
-  %tbody
-    - @days.each do |day|
-      %tr
-        %td= day.day
-        %td= link_to 'Show', day
-        %td= link_to 'Edit', edit_day_path(day)
-        %td= link_to 'Destroy', day, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    %h1 Listing dates
 
-%br
+    .table-responsive
+      %table.table.table-inverse.dark-background
+        %thead
+          %tr
+            %th Date
+            %th
+        %tbody
+          - @days.each do |day|
+            %tr
+              %td= day.day
+              %td.text-xs-right.text-nowrap
+                = link_to 'Edit', edit_day_path(day), :class => 'btn btn-success btn-sm'
+                = link_to 'Delete', day, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
 
-= link_to 'New Day', new_day_path
+    = link_to 'New date', new_day_path, class: 'btn btn-primary'
