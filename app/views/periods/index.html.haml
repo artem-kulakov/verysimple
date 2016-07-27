@@ -1,21 +1,22 @@
-%h1 Listing periods
+- @title = 'Periods'
 
-%table
-  %thead
-    %tr
-      %th Ending
-      %th
-      %th
-      %th
+.row
+  .col-xs-12
 
-  %tbody
-    - @periods.each do |period|
-      %tr
-        %td= period.ending
-        %td= link_to 'Show', period
-        %td= link_to 'Edit', edit_period_path(period)
-        %td= link_to 'Destroy', period, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    %h1 Listing periods
 
-%br
+    .table-responsive
+      %table.table.table-inverse.dark-background
+        %thead
+          %tr
+            %th Ending
+            %th
+        %tbody
+          - @periods.each do |period|
+            %tr
+              %td= period.ending
+              %td.text-xs-right.text-nowrap
+                = link_to 'Edit', edit_period_path(period), :class => 'btn btn-success btn-sm'
+                = link_to 'Delete', period, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
 
-= link_to 'New Period', new_period_path
+    = link_to 'New period', new_period_path, class: 'btn btn-primary'
