@@ -30,10 +30,8 @@ Record.all.each do |record|
 end
 
 # Periods
-endings = ['2016-06-30',
-           '2016-03-31',
-           '2015-12-31',
-           '2014-12-31']
-endings.each do |ending|
-  Period.create!(ending: ending)
+[2014, 2015].each do |year|
+  [3, 6, 9, 12].each do |month|
+    Period.create!(ending: Date.new(year, month, -1))
+  end
 end
