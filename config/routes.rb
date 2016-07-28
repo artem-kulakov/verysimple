@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  resources :periods
   root 'site#index'
+
+  resources :companies
+  resources :periods
+  resources :records
 
   resources :indicators do
     collection do
@@ -8,8 +11,6 @@ Rails.application.routes.draw do
       put 'update_order'
     end
   end
-  resources :companies
-  resources :records
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
