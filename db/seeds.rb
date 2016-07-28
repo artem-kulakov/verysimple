@@ -13,6 +13,11 @@ end
   end
 end
 
+# GAAPs
+['IFRS', 'Local GAAP', 'US GAAP'].each do |gaap|
+  Gaap.create!(name: gaap)
+end
+
 # Indicators
 indicators = ['Revenues',
              'Operating income',
