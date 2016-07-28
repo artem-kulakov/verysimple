@@ -29,7 +29,9 @@ end
 # Records
 Company.first(2).each do |company|
   Period.all.each do |period|
-    Record.create!(company_id: company.id, period_id: period.id)
+    Gaap.first(2).each do |gaap|
+      Record.create!(company_id: company.id, period_id: period.id, gaap_id: gaap.id)
+    end
   end
 end
 
@@ -37,7 +39,11 @@ end
 amounts = [1000, 100, 1500,
            2000, 200, 3000,
            3000, 300, 4500,
-           4000, 400, 6000]
+           4000, 400, 6000,
+           5000, 500, 7500,
+           6000, 600, 9000,
+           7000, 700, 10500,
+           8000, 800, 12000]
 Record.all.each do |record|
   Indicator.all.each do |indicator|
     Value.create!(record_id: record.id, indicator_id: indicator.id, amount: amounts.shift)
