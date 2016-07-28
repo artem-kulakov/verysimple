@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :gaaps
   root 'site#index'
 
   resources :companies

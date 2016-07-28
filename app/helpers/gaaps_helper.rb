@@ -1,0 +1,2 @@
+module GaapsHelper
+end

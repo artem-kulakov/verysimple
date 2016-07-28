@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @gaap.name
+
+= link_to 'Edit', edit_gaap_path(@gaap)
+\|
+= link_to 'Back', gaaps_path
