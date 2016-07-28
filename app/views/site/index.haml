@@ -8,6 +8,7 @@
     = form_tag root_path, method: 'get', class: 'selector' do
       %ul.list-inline
         %li.list-inline-item= select_tag :period, options_from_collection_for_select(@periods, :id, :ending, @period.id), onchange: 'this.form.submit()', class: 'form-control'
+        %li.list-inline-item= select_tag :gaap, options_from_collection_for_select(@gaaps, :id, :name, @gaap.id), onchange: 'this.form.submit()', class: 'form-control'
       = submit_tag 'submit'
       = javascript_tag "$('.selector input').hide()"
 
