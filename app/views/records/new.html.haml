@@ -13,6 +13,16 @@
             %li= msg
 
     .form-group.row
+      = f.label :period, class: 'col-xs-5 col-left form-control-label'
+      .col-xs-7.col-right
+        = f.select :period_id, options_from_collection_for_select(@periods, :id, :ending, @period), {}, {class: "form-control c-select"}
+
+    .form-group.row
+      = f.label :gaap, class: 'col-xs-5 col-left form-control-label'
+      .col-xs-7.col-right
+        = f.select :gaap_id, options_from_collection_for_select(@gaaps, :id, :name, @gaap), {}, {class: "form-control c-select"}
+
+    .form-group.row
       = f.label :company, class: 'col-xs-5 col-left form-control-label'
       .col-xs-7.col-right
         = f.select :company_id, options_from_collection_for_select(@companies, :id, :name, @company), {}, {class: "form-control c-select"}

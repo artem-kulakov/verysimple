@@ -17,8 +17,15 @@ class RecordsController < ApplicationController
     @record = Record.new
     @record.values.new
     @indicators = Indicator.order(:order)
+
     @companies = Company.with_no_record
     @company = params[:company]
+
+    @periods = Period.order(:ending)
+    @period = params[:period]
+    
+    @gaaps = Gaap.order(:name)
+    @gaap = params[:gaap]
   end
 
   # GET /records/1/edit
