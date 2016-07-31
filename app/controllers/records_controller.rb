@@ -24,7 +24,7 @@ class RecordsController < ApplicationController
     @gaaps = Gaap.order(:name)
     @gaap_id = params[:gaap]
 
-    @companies = Company.with_no_record(@period_id, @gaap_id)
+    @companies = Company.without_records(@period_id, @gaap_id)
     @company_id = params[:company]
   end
 

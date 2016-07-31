@@ -2,12 +2,8 @@ class Company < ActiveRecord::Base
   has_one :record, dependent: :destroy
   validates :name, presence: true, uniqueness: true
 
-  def self.with_record(period, gaap)
-  	# joins(:record).pluck(:company_id)
-  	joins(:record).where(:records => {period_id: period, gaap_id: gaap}).pluck(:company_id)
-  end
-
-  def self.with_no_record(period, gaap)
-		where.not(id: self.with_record(period, gaap)).order(:name)
+  def self.without_records(period_id, gaap_id)
+  	with_records = self.joins(:record).where(:records => {period_id: period_id, gaap_id: gaap_id}).pluck(:company_id)
+		where.not(id: with_records).order(:name)
 	end
 end
