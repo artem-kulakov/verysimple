@@ -5,6 +5,14 @@ class RecordsController < ApplicationController
   # GET /records.json
   def index
     @records = Record.all
+    @periods = Period.all
+  end
+
+  def from_period
+    @selected = Record.where(period_id: params[:period_id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /records/1

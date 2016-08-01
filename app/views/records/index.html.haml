@@ -19,3 +19,7 @@
 %br
 
 = link_to 'New Record', new_record_path
+
+.grid
+  = render 'sidebar_menu'
+  = render partial: 'record_grid', locals: { records: @records }
