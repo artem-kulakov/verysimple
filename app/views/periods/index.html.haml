@@ -21,3 +21,13 @@
 
     .form-group
       = link_to 'New period', new_period_path, class: 'btn btn-primary'
+
+%b Periods
+%ul#periods
+  = render @periods
+%br/
+= form_for(@period, remote: true) do |f|
+  = f.label :ending
+  %br/
+  = f.text_field :ending
+  = f.submit

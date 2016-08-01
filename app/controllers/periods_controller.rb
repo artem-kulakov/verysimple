@@ -5,6 +5,7 @@ class PeriodsController < ApplicationController
   # GET /periods.json
   def index
     @periods = Period.all
+    @period = Period.new
   end
 
   # GET /periods/1
@@ -29,6 +30,7 @@ class PeriodsController < ApplicationController
     respond_to do |format|
       if @period.save
         format.html { redirect_to @period, notice: 'Period was successfully created.' }
+        format.js   {}
         format.json { render :show, status: :created, location: @period }
       else
         format.html { render :new }
