@@ -29,6 +29,7 @@ class GaapsController < ApplicationController
     respond_to do |format|
       if @gaap.save
         format.html { redirect_to @gaap, notice: 'Gaap was successfully created.' }
+        format.js   { render :layout => false }
         format.json { render :show, status: :created, location: @gaap }
       else
         format.html { render :new }
