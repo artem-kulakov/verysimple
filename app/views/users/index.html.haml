@@ -1,0 +1,9 @@
+%b Users
+%ul#users
+  = render @users
+%br/
+= form_for(@user, remote: true) do |f|
+  = f.label :name
+  %br/
+  = f.text_field :name
+  = f.submit
