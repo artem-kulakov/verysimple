@@ -29,6 +29,7 @@ class RecordsController < ApplicationController
   end
 
   def bar
+    @selected = Company.find(1).name
     respond_to do |format|
       format.js
     end
