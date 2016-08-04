@@ -5,6 +5,10 @@
 # Fixing the turbolinks bug
 $(document).on 'ready page:load', ->
 
-	# Disappearing notices
-	$('.notice').delay(3000).slideUp()
-	
+  # Disappearing notices
+  $('.notice').delay(3000).slideUp()
+  
+  #
+  $('select#record_period_id').on 'change', (event) ->
+    $.ajax url: '/foo'
+    return
