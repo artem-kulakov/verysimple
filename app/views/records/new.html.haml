@@ -12,6 +12,10 @@
           - @record.errors.full_messages.each do |msg|
             %li= msg
 
+    = link_to 'Foo', foo_path, :remote => true
+    .foo
+      %p ...
+
     .form-group.row
       = f.label :period, 'Period ending', class: 'col-xs-5 col-left form-control-label'
       .col-xs-7.col-right

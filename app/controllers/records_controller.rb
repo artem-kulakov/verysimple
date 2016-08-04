@@ -28,6 +28,12 @@ class RecordsController < ApplicationController
     @company_id = params[:company]
   end
 
+  def bar
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # GET /records/1/edit
   def edit
     @indicators = Indicator.order(:order)

@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :gaaps
   root 'site#index'
 
+  get "/foo" => 'records#bar', as: 'foo'
+
   resources :companies
   resources :periods
   resources :records

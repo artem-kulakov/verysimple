@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_action :set_active_nav_item, :foo
 
+  layout proc { false if request.xhr? }
+
   def set_active_nav_item
     instance_variable_set("@#{controller_name}_active", 'active')
   end
