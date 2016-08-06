@@ -9,6 +9,10 @@ $(document).on 'ready page:load', ->
   $('.notice').delay(3000).slideUp()
   
   #
-  $('select#record_period_id').on 'change', (event) ->
-    $.ajax url: '/foo'
+  $('.select-period-gaap').on 'change', (event) ->
+    period_id = $('select#record_period_id').val()
+    gaap_id = $('select#record_gaap_id').val()
+    $.ajax
+    	url: '/foo'
+    	data: { period: period_id, gaap: gaap_id }
     return
