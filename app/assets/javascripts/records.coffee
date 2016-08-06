@@ -13,6 +13,6 @@ $(document).on 'ready page:load', ->
     period_id = $('select#record_period_id').val()
     gaap_id = $('select#record_gaap_id').val()
     $.ajax
-    	url: '/foo'
+    	url: '/fetch_companies'
     	data: { period: period_id, gaap: gaap_id }
     return
