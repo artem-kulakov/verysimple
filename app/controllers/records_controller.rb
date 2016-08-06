@@ -28,7 +28,7 @@ class RecordsController < ApplicationController
     @company_id = params[:company]
   end
 
-  def from_company
+  def fetch_companies
     @companies = Company.without_records(params[:period], params[:gaap])
     respond_to do |format|
       format.js
