@@ -8,7 +8,7 @@ $(document).on 'ready page:load', ->
   # Disappearing notices
   $('.notice').delay(3000).slideUp()
   
-  #
+  # Dynamic companies selector
   $('.select-period-gaap').on 'change', (event) ->
     period_id = $('select#record_period_id').val()
     gaap_id = $('select#record_gaap_id').val()

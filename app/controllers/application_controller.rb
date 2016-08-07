@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_active_nav_item, :foo
 
+  # Never render layout for Ajax requests
   layout proc { false if request.xhr? }
 
   def set_active_nav_item
