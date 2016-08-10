@@ -56,7 +56,7 @@ class RecordsController < ApplicationController
 
     respond_to do |format|
       if @record.save
-        format.html { redirect_to root_path, notice: 'Record was successfully created.' }
+        format.html { redirect_to root_path(period: record_params[:period_id], gaap: record_params[:gaap_id]), notice: 'Record was successfully created.' }
         format.json { render :show, status: :created, location: @record }
       else
         format.html { render :new }
