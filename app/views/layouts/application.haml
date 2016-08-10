@@ -20,8 +20,6 @@
           = link_to 'Periods', periods_path, class: "nav-item nav-link #{@periods_active}"
 
     .container
-      - if notice
-        .notice.alert.alert-success= notice
       = yield
 
     %footer.footer
