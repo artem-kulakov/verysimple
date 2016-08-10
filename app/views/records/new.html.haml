@@ -31,7 +31,7 @@
 
     - @indicators.each do |indicator|
       .form-group.row
-        = f.label indicator.name, class: 'col-xs-5 col-left form-control-label'
+        = f.label :indicator_name, indicator.name, class: 'col-xs-5 col-left form-control-label'
         = f.fields_for :values do |values_form|
           = values_form.hidden_field :indicator_id, :value => indicator.id
           .col-xs-7.col-right

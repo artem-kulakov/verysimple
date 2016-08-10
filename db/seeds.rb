@@ -7,8 +7,8 @@ companies.each do |company|
 end
 
 # Periods
-[2014, 2015].each do |year|
-  [12].each do |month|
+[2014, 2015, 2016].each do |year|
+  [3, 6, 9, 12].each do |month|
     Period.create!(ending: Date.new(year, month, -1))
   end
 end
@@ -20,15 +20,21 @@ end
 
 # Indicators
 indicators = ['Revenues',
-             'Operating income',
-             'Debt']
+             'EBITDA',
+             'Net income',
+             'Net debt',
+             'Free cash flow',
+             'Capex',
+             'Oil production',
+             'Oil processing',
+             'Refined products production']
 indicators.each do |indicator|
   Indicator.create!(name: indicator)
 end
 
 # Records
 Company.first(2).each do |company|
-  Period.all.each do |period|
+  Period.first(2).each do |period|
     Gaap.first(2).each do |gaap|
       Record.create!(company_id: company.id, period_id: period.id, gaap_id: gaap.id)
     end
@@ -36,16 +42,16 @@ Company.first(2).each do |company|
 end
 
 # Values
-amounts = [1000, 100, 1500,
-           2000, 200, 3000,
-           3000, 300, 4500,
-           4000, 400, 6000,
-           5000, 500, 7500,
-           6000, 600, 9000,
-           7000, 700, 10500,
-           8000, 800, 12000]
+amounts = [1000, 500, 100,
+           2000, 1000, 200,
+           3000, 1500, 300,
+           4000, 2000, 400,
+           5000, 2500, 500,
+           6000, 3000, 600,
+           7000, 3500, 700,
+           8000, 4000, 800]
 Record.all.each do |record|
-  Indicator.all.each do |indicator|
+  Indicator.first(3).each do |indicator|
     Value.create!(record_id: record.id, indicator_id: indicator.id, amount: amounts.shift)
   end
 end
