@@ -28,8 +28,8 @@ indicators = ['Revenues',
              'Oil production',
              'Oil processing',
              'Refined products production']
-indicators.each do |indicator|
-  Indicator.create!(name: indicator)
+indicators.each_with_index do |indicator, index|
+  Indicator.create!(name: indicator, order: index)
 end
 
 # Records
