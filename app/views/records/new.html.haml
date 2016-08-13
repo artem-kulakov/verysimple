@@ -35,7 +35,7 @@
         = f.fields_for :values do |values_form|
           = values_form.hidden_field :indicator_id, :value => indicator.id
           .col-xs-7.col-right
-            = values_form.text_field :amount, class: 'form-control', type: 'number'
+            = values_form.text_field :amount, class: 'form-control', type: 'number', step: 'any'
 
     .form-group.row
       .col-xs-5.col-left
