@@ -7,7 +7,7 @@ companies.each do |company|
 end
 
 # Periods
-[2014, 2015, 2016].each do |year|
+(2014..2018).to_a.each do |year|
   [3, 6, 9, 12].each do |month|
     Period.create!(ending: Date.new(year, month, -1))
   end

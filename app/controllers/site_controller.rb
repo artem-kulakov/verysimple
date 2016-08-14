@@ -1,6 +1,6 @@
 class SiteController < ApplicationController
   def index
-    @periods = Period.order(:ending)
+    @periods = Period.where("ending < ?", Date.today).order(:ending)
     @period = Period.find(params[:period] || 1)
 
     @gaaps = Gaap.order(:name)
