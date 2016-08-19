@@ -38,6 +38,13 @@ class RecordsController < ApplicationController
   # GET /records/1/edit
   def edit
     @indicators = Indicator.order(:order)
+
+    @periods = Period.order(:ending)
+    @period_id = params[:period]
+    
+    @gaaps = Gaap.order(:name)
+    @gaap_id = params[:gaap]
+
     @companies = Company.all
     @company = @record.company_id
 
