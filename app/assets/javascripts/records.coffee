@@ -12,6 +12,12 @@ $(document).on 'ready page:load', ->
   $('.select-period-gaap').on 'change', (event) ->
     period_id = $('select#record_period_id').val()
     gaap_id = $('select#record_gaap_id').val()
+
+    # Change params of 'New company' link
+    params = $.param( { period: period_id, gaap: gaap_id, new_record: true } )
+    $('.new-company').attr('href', '/companies/new?' + params)
+
+    # Change companies selector
     $.ajax
     	url: '/records/fetch_companies'
     	data: { period: period_id, gaap: gaap_id }

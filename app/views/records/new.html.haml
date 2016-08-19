@@ -27,7 +27,7 @@
       .col-xs-7.col-right
         = f.select :company_id, options_from_collection_for_select(@companies, :id, :name, @company), {}, {class: "form-control c-select select-company"}
         - unless @company
-          = link_to 'New company', new_company_path(new_record: true), class: 'btn btn-link btn-sm'
+          = link_to 'New company', new_company_path(new_record: true, period: @period_id, gaap: @gaap_id), class: 'btn btn-link btn-sm new-company'
 
     - @indicators.each do |indicator|
       .form-group.row

@@ -11,12 +11,16 @@
     .col-xs-7.col-right
       = f.text_field :name, class: 'form-control', :autofocus => true
       
-  - if @new_record
+  - if params[:new_record]
     = hidden_field_tag(:new_record, true)
+    = hidden_field_tag(:period, params[:period])
+    = hidden_field_tag(:gaap, params[:gaap])
 
   .form-group.row
     .col-xs-5.col-left
     .col-xs-7.col-right
       = f.submit 'Save', class: "btn btn-#{@color}"
-      = link_to 'Cancel', send(@path), class: 'btn btn-secondary'
-      
+      - if params[:new_record]
+        = link_to 'Cancel', new_record_path(period: params[:period], gaap: params[:gaap]), class: 'btn btn-secondary'
+      - else
+        = link_to 'Cancel', companies_path, class: 'btn btn-secondary'

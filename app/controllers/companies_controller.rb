@@ -15,14 +15,6 @@ class CompaniesController < ApplicationController
   # GET /companies/new
   def new
     @company = Company.new
-
-    # path for 'Cancel' button
-    if params[:new_record]
-      @path = 'new_record_path'
-      @new_record = true
-    else
-      @path = 'companies_path'
-    end
   end
 
   # GET /companies/1/edit
@@ -38,7 +30,7 @@ class CompaniesController < ApplicationController
     respond_to do |format|
       if @company.save
         if params[:new_record]
-          format.html { redirect_to new_record_path(company: @company.id), notice: 'Company was successfully created.' }
+          format.html { redirect_to new_record_path(company: @company.id, period: params[:period], gaap: params[:gaap]), notice: 'Company was successfully created.' }
         else
           format.html { redirect_to companies_path, notice: 'Company was successfully created.' }
         end
