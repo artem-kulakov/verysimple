@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160821073215) do
+ActiveRecord::Schema.define(version: 20160821143108) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -49,6 +49,18 @@ ActiveRecord::Schema.define(version: 20160821073215) do
   add_index "records", ["company_id"], name: "index_records_on_company_id"
   add_index "records", ["gaap_id"], name: "index_records_on_gaap_id"
   add_index "records", ["period_id"], name: "index_records_on_period_id"
+
+  create_table "sections", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "units", force: :cascade do |t|
     t.string   "name"
