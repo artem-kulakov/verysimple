@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160821143739) do
+ActiveRecord::Schema.define(version: 20160823214116) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -30,7 +30,10 @@ ActiveRecord::Schema.define(version: 20160821143739) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "order"
+    t.integer  "type_id"
   end
+
+  add_index "indicators", ["type_id"], name: "index_indicators_on_type_id"
 
   create_table "periods", force: :cascade do |t|
     t.date     "ending"

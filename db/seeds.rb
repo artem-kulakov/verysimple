@@ -24,15 +24,9 @@ end
 # Indicators
 indicators = ['Revenues',
              'EBITDA',
-             'Net income',
-             'Net debt',
-             'Free cash flow',
-             'Capex',
-             'Oil production',
-             'Oil processing',
-             'Refined products production']
+             'Net income']
 indicators.each_with_index do |indicator, index|
-  Indicator.create!(name: indicator, order: index)
+  Indicator.create!(name: indicator, order: index, type_id: 1)
 end
 
 
