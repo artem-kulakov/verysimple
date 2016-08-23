@@ -6,6 +6,7 @@ companies.each do |company|
   Company.create!(name: company)
 end
 
+
 # Periods
 (2014..2018).to_a.each do |year|
   [3, 6, 9, 12].each do |month|
@@ -13,10 +14,12 @@ end
   end
 end
 
+
 # GAAPs
 ['IFRS', 'Local GAAP', 'US GAAP'].each do |gaap|
   Gaap.create!(name: gaap)
 end
+
 
 # Indicators
 indicators = ['Revenues',
@@ -32,6 +35,25 @@ indicators.each_with_index do |indicator, index|
   Indicator.create!(name: indicator, order: index)
 end
 
+
+# Units
+
+['financial', 'operational'].each do |section|
+  Section.create!(name: section)
+end
+
+['currency',
+ 'ratio',
+ 'oil',
+ 'gas'].each do |type|
+    Type.create!(name: type)
+  end
+
+['RUB', 'USD'].each do |currency|
+  Unit.create!(name: currency, section_id: 1, type_id: 1)
+end
+
+
 # Records
 Company.first(2).each do |company|
   Period.first(2).each do |period|
@@ -40,6 +62,7 @@ Company.first(2).each do |company|
     end
   end
 end
+
 
 # Values
 amounts = [1000, 500, 100,
