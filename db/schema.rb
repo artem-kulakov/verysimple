@@ -19,12 +19,6 @@ ActiveRecord::Schema.define(version: 20160821143739) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "currencies", force: :cascade do |t|
-    t.string   "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "gaaps", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
