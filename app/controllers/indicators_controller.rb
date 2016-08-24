@@ -15,10 +15,15 @@ class IndicatorsController < ApplicationController
   # GET /indicators/new
   def new
     @indicator = Indicator.new(order: Indicator.count)
+    
+    @types = Type.all
+    @type_id = @indicator.type_id
   end
 
   # GET /indicators/1/edit
   def edit
+    @types = Type.all
+    @type_id = @indicator.type_id
   end
 
   # GET /indicators/reorder
@@ -85,6 +90,6 @@ class IndicatorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def indicator_params
-      params.require(:indicator).permit(:name, :order)
+      params.require(:indicator).permit(:name, :order, :type_id)
     end
 end

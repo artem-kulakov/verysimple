@@ -10,12 +10,15 @@
         %thead
           %tr
             %th Name
+            %th Type
             %th
         %tbody
           - @indicators.each do |indicator|
             %tr
               %td
                 = indicator.name
+              %td
+                = indicator.type.name
               %td.text-xs-right.text-nowrap
                 = link_to 'Edit', edit_indicator_path(indicator), :class => 'btn btn-success btn-sm'
                 = link_to 'Delete', indicator, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'

@@ -13,6 +13,11 @@
       = f.hidden_field :order, value: @indicator.order
   
   .form-group.row
+    = f.label :type, class: 'col-xs-5 col-left form-control-label'
+    .col-xs-7.col-right
+      = f.select :type_id, options_from_collection_for_select(@types, :id, :name, @type_id), {}, {class: "form-control c-select"}
+
+  .form-group.row
     .col-xs-5.col-left
     .col-xs-7.col-right
       = f.submit 'Save', class: "btn btn-#{@color}"

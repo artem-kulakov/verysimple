@@ -32,14 +32,14 @@ end
 
 # Units
 
-['financial', 'operational'].each do |section|
+['Financial', 'Operational'].each do |section|
   Section.create!(name: section)
 end
 
-['currency',
- 'ratio',
- 'oil',
- 'gas'].each do |type|
+['Currency',
+ 'Ratio',
+ 'Oil',
+ 'Gas'].each do |type|
     Type.create!(name: type)
   end
 
