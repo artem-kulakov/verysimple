@@ -36,7 +36,7 @@
             .col-xs-4.col-right
               = values_form.text_field :amount, class: 'form-control', type: 'number', step: 'any'
             .col-xs-4
-              = values_form.select :unit_id, options_from_collection_for_select(Unit.all, :id, :name, values_form.object.unit_id), {}, {class: "form-control c-select unit"}
+              = values_form.select :unit_id, options_from_collection_for_select(Unit.where(type_id: indicator.type_id), :id, :name, values_form.object.unit_id), {}, {class: "form-control c-select unit"}
 
     .form-group.row
       .col-xs-4.col-left

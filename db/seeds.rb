@@ -29,6 +29,8 @@ indicators.each_with_index do |indicator, index|
   Indicator.create!(name: indicator, order: index, type_id: 1)
 end
 
+Indicator.create!(name: 'Oil production', order: 3, type_id: 2)
+
 
 # Units
 
@@ -36,15 +38,16 @@ end
   Section.create!(name: section)
 end
 
-['Currency',
- 'Ratio',
- 'Oil',
- 'Gas'].each do |type|
-    Type.create!(name: type)
-  end
+['Currency', 'Oil'].each do |type|
+  Type.create!(name: type)
+end
 
 ['RUB', 'USD'].each do |currency|
   Unit.create!(name: currency, section_id: 1, type_id: 1)
+end
+
+['mln ton', 'mln boe'].each do |name|
+  Unit.create!(name: name, section_id: 2, type_id: 2)
 end
 
 
