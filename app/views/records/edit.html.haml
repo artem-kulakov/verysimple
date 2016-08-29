@@ -13,17 +13,17 @@
             %li= msg
 
     .form-group.row
-      = f.label :period, 'Period ending', class: 'col-xs-4  form-control-label'
+      = f.label :period, 'Period ending', class: 'col-xs-4 form-control-label'
       .col-xs-8.col-sm-4
         = f.select :period_id, options_from_collection_for_select(@periods, :id, :ending, @period_id), {}, {class: "form-control c-select select-period-gaap", disabled: 'true'}
 
     .form-group.row
-      = f.label :gaap, 'Accounting standard', class: 'col-xs-4  form-control-label'
+      = f.label :gaap, 'Accounting standard', class: 'col-xs-4 form-control-label'
       .col-xs-8.col-sm-4
         = f.select :gaap_id, options_from_collection_for_select(@gaaps, :id, :name, @gaap_id), {}, {class: "form-control c-select select-period-gaap", disabled: 'true'}
 
     .form-group.row
-      = f.label :company, class: 'col-xs-4  form-control-label'
+      = f.label :company, class: 'col-xs-4 form-control-label'
       .col-xs-8.col-sm-4
         = f.select :company_id, options_from_collection_for_select(@companies, :id, :name, @company), {}, {class: "form-control c-select", disabled: 'true'}
 

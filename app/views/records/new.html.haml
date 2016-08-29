@@ -13,32 +13,34 @@
             %li= msg
 
     .form-group.row
-      = f.label :period, 'Period ending', class: 'col-xs-5 col-left form-control-label'
-      .col-xs-7.col-right
+      = f.label :period, 'Period ending', class: 'col-xs-4 form-control-label'
+      .col-xs-8.col-sm-4
         = f.select :period_id, options_from_collection_for_select(@periods, :id, :ending, @period_id), {}, {class: "form-control c-select select-period-gaap"}
 
     .form-group.row
-      = f.label :gaap, 'Accounting standard', class: 'col-xs-5 col-left form-control-label'
-      .col-xs-7.col-right
+      = f.label :gaap, 'Accounting standard', class: 'col-xs-4 form-control-label'
+      .col-xs-8.col-sm-4
         = f.select :gaap_id, options_from_collection_for_select(@gaaps, :id, :name, @gaap_id), {}, {class: "form-control c-select select-period-gaap"}
 
     .form-group.row
-      = f.label :company, class: 'col-xs-5 col-left form-control-label'
-      .col-xs-7.col-right
+      = f.label :company, class: 'col-xs-4 form-control-label'
+      .col-xs-8.col-sm-4
         = f.select :company_id, options_from_collection_for_select(@companies, :id, :name, @company), {}, {class: "form-control c-select select-company"}
         - unless @company
           = link_to 'New company', new_company_path(new_record: true, period: @period_id, gaap: @gaap_id), class: 'btn btn-link btn-sm new-company'
 
     - @indicators.each do |indicator|
       .form-group.row
-        = f.label :indicator_name, indicator.name, class: 'col-xs-5 col-left form-control-label'
+        = f.label :indicator_name, indicator.name, class: 'col-xs-4 form-control-label'
         = f.fields_for :values do |values_form|
           = values_form.hidden_field :indicator_id, :value => indicator.id
-          .col-xs-7.col-right
-            = values_form.text_field :amount, class: 'form-control', type: 'number', step: 'any'
+          .col-xs-4
+            = values_form.text_field :amount, class: 'form-control text-xs-right', type: 'number', step: 'any'
+          .col-xs-4
+            = values_form.select :unit_id, options_from_collection_for_select(Unit.where(type_id: indicator.type_id), :id, :name, values_form.object.unit_id), {}, {class: "form-control c-select"}
 
     .form-group.row
-      .col-xs-5.col-left
-      .col-xs-7.col-right
+      .col-xs-4
+      .col-xs-8
         = f.submit 'Save', class: 'btn btn-primary'
         = link_to 'Cancel', root_path(period: @period_id, gaap: @gaap_id), class: 'btn btn-secondary'
