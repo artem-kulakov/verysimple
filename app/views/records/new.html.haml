@@ -35,7 +35,7 @@
         = f.fields_for :values do |values_form|
           = values_form.hidden_field :indicator_id, :value => indicator.id
           .col-xs-4
-            = values_form.text_field :amount, class: 'form-control text-xs-right', type: 'number', step: 'any'
+            = values_form.text_field :amount, class: 'form-control text-xs-right value'
           .col-xs-4
             = values_form.select :unit_id, options_from_collection_for_select(Unit.where(type_id: indicator.type_id), :id, :name, values_form.object.unit_id), {}, {class: "form-control c-select"}
 

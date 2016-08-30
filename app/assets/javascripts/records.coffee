@@ -22,3 +22,9 @@ $(document).on 'ready page:load', ->
     	url: '/records/fetch_companies'
     	data: { period: period_id, gaap: gaap_id }
     return
+
+  # Evaluate user's equations
+  $('.value').on 'change', (event) ->
+    filtered = $(this).val().replace(/[^-+*\/\d.()]/g,'')
+    result = eval(filtered).toFixed(1)
+    $(this).val(result)
