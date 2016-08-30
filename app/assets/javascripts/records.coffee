@@ -25,6 +25,11 @@ $(document).on 'ready page:load', ->
 
   # Evaluate user's equations
   $('.value').on 'change', (event) ->
-    filtered = $(this).val().replace(/[^-+*\/\d.()]/g,'')
-    result = eval(filtered).toFixed(1)
-    $(this).val(result)
+    value = $(this).val()
+    unless $.isNumeric(value)
+      filtered = value.replace(/[^-+*\/\d.()]/g,'')
+      result = eval(filtered).toFixed(1)
+      # Fade out equation and fade in the result
+      $(this).fadeOut ->
+        $(this).val(result).fadeIn()
+        return
