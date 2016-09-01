@@ -29,7 +29,6 @@ $(document).on 'ready page:load', ->
     unless $.isNumeric(value)
       filtered = value.replace(/[^-+*\/\d.()]/g,'')
       result = eval(filtered).toFixed(1)
-      # Fade out equation and fade in the result
-      $(this).fadeOut ->
-        $(this).val(result).fadeIn()
+      $(this).animate { color: '#FFF' }, 200, ->
+        $(this).val(result).animate { color: '#55595c' }, 400
         return
