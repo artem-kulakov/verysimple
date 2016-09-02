@@ -32,3 +32,12 @@ $(document).on 'ready page:load', ->
       $(this).animate { color: '#FFF' }, 200, ->
         $(this).val(result).animate { color: '#55595c' }, 400
         return
+
+  # Mass select of the currency
+  $('.currency:first').css 'font-weight', 'bold'
+  $('.currency:first').on 'change', (event) ->
+    unless window.currencies is 'changed'
+      currency_id = $(this).val()
+      $('.currency').val(currency_id)
+      $(this).css 'font-weight', 'normal'
+      window.currencies = 'changed'

@@ -38,7 +38,7 @@ Indicator.create!(name: 'Oil production', order: 3, type_id: 2)
   Section.create!(name: section)
 end
 
-['Currency', 'Oil'].each do |type|
+['currency', 'oil'].each do |type|
   Type.create!(name: type)
 end
 
