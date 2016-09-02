@@ -23,6 +23,9 @@ $(document).on 'ready page:load', ->
     	data: { period: period_id, gaap: gaap_id }
     return
 
+  # Autofocus on companies selector
+  $('.select-company').focus()
+
   # Evaluate user's equations
   $('.value').on 'change', (event) ->
     value = $(this).val()
@@ -41,3 +44,4 @@ $(document).on 'ready page:load', ->
       $('.currency').val(currency_id)
       $(this).css 'font-weight', 'normal'
       window.currencies = 'changed'
+    return
