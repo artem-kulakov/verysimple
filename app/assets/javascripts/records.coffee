@@ -37,8 +37,8 @@ $(document).on 'ready page:load', ->
         return
 
   # Mass select of the currency
-  $('.currency:first').css 'font-weight', 'bold'
-  $('.currency:first').on 'change', (event) ->
+  $('.currency').first().css 'font-weight', 'bold'
+  $('.currency').first().on 'change', (event) ->
     unless window.currencies is 'changed'
       currency_id = $(this).val()
       $('.currency').val(currency_id)
