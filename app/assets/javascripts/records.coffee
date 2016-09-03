@@ -39,11 +39,11 @@ $(document).on 'ready page:load', ->
     return
 
   # Mass select of the currency
-  $('.currency').first().css 'font-weight', 'bold'
+  $('.currency').first().toggleClass('text-info')
   $('.currency').first().on 'change', (event) ->
     unless window.currencies is 'changed'
       currency_id = $(this).val()
       $('.currency').val(currency_id)
-      $(this).css 'font-weight', 'normal'
+      $(this).toggleClass('text-info')
       window.currencies = 'changed'
     return
