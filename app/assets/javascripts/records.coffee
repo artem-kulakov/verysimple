@@ -21,6 +21,7 @@ $(document).on 'ready page:load', ->
     $.ajax
     	url: '/records/fetch_companies'
     	data: { period: period_id, gaap: gaap_id }
+    
     return
 
   # Autofocus on companies selector
@@ -35,6 +36,7 @@ $(document).on 'ready page:load', ->
       $(this).animate { color: '#FFF' }, 200, ->
         $(this).val(result).animate { color: '#55595c' }, 400
         return
+    return
 
   # Mass select of the currency
   $('.currency').first().css 'font-weight', 'bold'
