@@ -27,14 +27,14 @@
       .col-xs-8.col-sm-4
         = f.select :company_id, options_from_collection_for_select(@companies, :id, :name, @company), {}, {class: "form-control c-select", disabled: 'true'}
 
-    - @indicators.each do |indicator|
+    - @indicators.each_with_index do |indicator, index|
       .form-group.row
         = f.label :indicator_name, indicator.name, class: 'col-xs-4 form-control-label'
         = f.fields_for :values do |values_form|
           - if indicator.id == values_form.object.indicator_id
             = values_form.hidden_field :indicator_id, :value => indicator.id
             .col-xs-4
-              = values_form.text_field :amount, class: 'form-control text-xs-right value'
+              = values_form.text_field :amount, class: 'form-control text-xs-right value', tabindex: index + 1
             .col-xs-4
               = values_form.select :unit_id, options_from_collection_for_select(Unit.where(type_id: indicator.type_id), :id, :name, values_form.object.unit_id), {}, {class: "form-control c-select"}
 

@@ -24,8 +24,13 @@ $(document).on 'ready page:load', ->
     
     return
 
-  # Autofocus on companies selector
-  $('.select-company').focus()
+  # Autofocus in new/edit
+  company_selector = $('#record_company_id')
+  if company_selector.length
+    if company_selector.prop('disabled')
+      $('.value').first().focus()
+    else
+      $('#record_company_id').focus()
 
   # Evaluate user's equations
   $('.value').on 'change', (event) ->
