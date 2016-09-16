@@ -42,12 +42,13 @@ end
   Type.create!(name: type)
 end
 
-['RUB', 'USD'].each do |currency|
-  Unit.create!(name: currency, section_id: 1, type_id: 1)
+[['RUB bln', 0.01538],['USD mln', 1]].each do |name, multiplier|
+  Unit.create!(name: name, section_id: 1, type_id: 1, multiplier: multiplier)
 end
 
-['mln ton', 'mln boe'].each do |name|
-  Unit.create!(name: name, section_id: 2, type_id: 2)
+[['mln bbl', 1],
+ ['mln ton', 7.33]].each do |name, multiplier|
+  Unit.create!(name: name, section_id: 2, type_id: 2, multiplier: multiplier)
 end
 
 

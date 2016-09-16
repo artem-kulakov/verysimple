@@ -17,9 +17,9 @@
       %table.table.table-inverse.dark-background
         %thead
           %tr
-            %th In billions of RUB
+            %th
             - @indicators.each do |indicator|
-              %th.text-xs-right= indicator.name
+              %th.text-xs-right= "#{indicator.name}, #{indicator.base_unit}"
             %th
         %tbody
           - @records.each do |record|

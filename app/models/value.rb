@@ -6,7 +6,7 @@ class Value < ActiveRecord::Base
   def self.amount(record, indicator)
   	value = where(record_id: record, indicator_id: indicator)
   	if value.any?
-  		value.first.amount
+  		value.first.amount * value.first.unit.multiplier
   	else
   		nil
   	end
