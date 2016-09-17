@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :units
   resources :gaaps
   root 'site#index'
