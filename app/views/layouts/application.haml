@@ -20,6 +20,10 @@
           = link_to 'Periods', periods_path, class: "nav-item nav-link #{@periods_active}"
 
     .container
+      - if flash[:notice]
+        .alert.alert-success= flash[:notice]
+      - if flash[:alert]
+        .alert.alert-danger= flash[:alert]
       = yield
 
     %footer.footer
