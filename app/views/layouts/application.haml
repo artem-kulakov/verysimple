@@ -18,12 +18,19 @@
           = link_to 'Companies', companies_path, class: "nav-item nav-link #{@companies_active}"
           = link_to 'Indicators', indicators_path, class: "nav-item nav-link #{@indicators_active}"
           = link_to 'Periods', periods_path, class: "nav-item nav-link #{@periods_active}"
+          - if user_signed_in?
+            .pull-xs-right
+              = link_to current_user.email, root_path, class: "nav-item nav-link"
+              = link_to 'Log out', destroy_user_session_path, method: :delete, class: "nav-item nav-link"
+          - else
+            .pull-xs-right
+              = link_to 'Log in', new_user_session_path, class: "nav-item nav-link"
+              = link_to 'Sign up', new_user_registration_path, class: "nav-item nav-link"
 
     .container
-      - if flash[:notice]
-        .alert.alert-success= flash[:notice]
       - if flash[:alert]
         .alert.alert-danger= flash[:alert]
+
       = yield
 
     %footer.footer
