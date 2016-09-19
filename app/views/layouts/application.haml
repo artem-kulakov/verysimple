@@ -18,7 +18,7 @@
           = link_to 'Companies', companies_path, class: "nav-item nav-link #{@companies_active}"
           - if user_signed_in?
             .pull-xs-right
-              = link_to current_user.email, root_path, class: "nav-item nav-link"
+              = link_to "#{current_user.email} (#{current_user.reputation})", root_path, class: "nav-item nav-link"
               = link_to 'Log out', destroy_user_session_path, method: :delete, class: "nav-item nav-link"
           - else
             .pull-xs-right

@@ -1,3 +1,6 @@
+# User
+User.create!(email: 'artem.kulakov@gmail.com', password: 'hasanyone', reputation: 1000)
+
 # Companies
 companies = ['Rosneft',
              'Gazprom',
