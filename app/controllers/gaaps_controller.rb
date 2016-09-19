@@ -1,5 +1,6 @@
 class GaapsController < ApplicationController
   before_action :set_gaap, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /gaaps
   # GET /gaaps.json

@@ -1,5 +1,6 @@
 class PeriodsController < ApplicationController
   before_action :set_period, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /periods
   # GET /periods.json

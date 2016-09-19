@@ -16,8 +16,6 @@
         .nav.navbar-nav
           = link_to 'Home', root_path, class: "nav-item nav-link #{@site_active}"
           = link_to 'Companies', companies_path, class: "nav-item nav-link #{@companies_active}"
-          = link_to 'Indicators', indicators_path, class: "nav-item nav-link #{@indicators_active}"
-          = link_to 'Periods', periods_path, class: "nav-item nav-link #{@periods_active}"
           - if user_signed_in?
             .pull-xs-right
               = link_to current_user.email, root_path, class: "nav-item nav-link"
