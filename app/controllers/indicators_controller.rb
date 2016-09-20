@@ -1,6 +1,7 @@
 class IndicatorsController < ApplicationController
-  before_action :set_indicator, only: [:show, :edit, :update, :destroy]
+  before_action :verify_admin
   before_action :authenticate_user!, except: [:index]
+  before_action :set_indicator, only: [:show, :edit, :update, :destroy]
 
   # GET /indicators
   # GET /indicators.json

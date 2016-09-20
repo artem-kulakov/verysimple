@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :set_active_nav_item, :foo
+  before_action :set_active_nav_item, :set_button_color
 
   # Never render layout for Ajax requests
   layout proc { false if request.xhr? }
@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     instance_variable_set("@#{controller_name}_active", 'active')
   end
 
-  def foo
+  def set_button_color
     @color = case action_name
     when 'new'
       'primary'
@@ -20,4 +20,17 @@ class ApplicationController < ActionController::Base
       'success'
     end
   end
+
+  protected
+
+    # Give access to admin only
+    def verify_admin
+      unless current_user.nil?
+        unless current_user.admin?
+          redirect_to root_path
+        end
+      else
+        redirect_to root_path
+      end
+    end
 end

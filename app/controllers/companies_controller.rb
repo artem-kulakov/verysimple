@@ -1,6 +1,7 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :verify_admin, only: [:destroy]
   before_action :authenticate_user!, except: [:index]
+  before_action :set_company, only: [:show, :edit, :update, :destroy]
 
   # GET /companies
   # GET /companies.json
