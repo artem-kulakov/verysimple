@@ -29,7 +29,9 @@
         - unless @company
           = link_to 'New company', new_company_path(new_record: true, period: @period_id, gaap: @gaap_id), class: 'btn btn-link btn-sm new-company'
 
+    - tabindex = nil # for tabindex submit button
     - @indicators.each_with_index do |indicator, index|
+      - tabindex = index
       .form-group.row
         = f.label :indicator_name, indicator.name, class: 'col-xs-4 form-control-label'
         = f.fields_for :values do |values_form|
@@ -42,5 +44,5 @@
     .form-group.row
       .col-xs-4
       .col-xs-8
-        = f.submit 'Save', class: 'btn btn-primary'
+        = f.submit 'Save', class: 'btn btn-primary', tabindex: tabindex + 5
         = link_to 'Cancel', root_path(period: @period_id, gaap: @gaap_id), class: 'btn btn-secondary'

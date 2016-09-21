@@ -27,7 +27,9 @@
       .col-xs-8.col-sm-4
         = f.select :company_id, options_from_collection_for_select(@companies, :id, :name, @company), {}, {class: "form-control c-select", disabled: 'true'}
 
+    - tabindex = nil # for tabindex submit button
     - @indicators.each_with_index do |indicator, index|
+      - tabindex = index
       .form-group.row
         = f.label :indicator_name, indicator.name, class: 'col-xs-4 form-control-label'
         = f.fields_for :values do |values_form|
@@ -41,5 +43,5 @@
     .form-group.row
       .col-xs-4
       .col-xs-8
-        = f.submit 'Save', class: 'btn btn-success'
+        = f.submit 'Save', class: 'btn btn-success', tabindex: tabindex + 5
         = link_to 'Cancel', root_path, class: 'btn btn-secondary'

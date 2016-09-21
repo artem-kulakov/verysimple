@@ -67,6 +67,16 @@ class RecordsController < ApplicationController
       if @record.save
         format.html { redirect_to root_path(period: record_params[:period_id], gaap: record_params[:gaap_id]), notice: 'Record was successfully created.' }
         format.json { render :show, status: :created, location: @record }
+
+        # Change user's reputation
+        current_reputation = current_user.reputation
+        if current_reputation < 1000
+          new_reputation =  current_reputation + (1000 - current_reputation) * 0.1
+          if new_reputation.to_i == current_reputation.to_i
+            new_reputation += 1
+          end
+          current_user.update(reputation: new_reputation)
+        end
       else
         format.html { render :new }
         format.json { render json: @record.errors, status: :unprocessable_entity }
