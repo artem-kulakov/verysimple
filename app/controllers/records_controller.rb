@@ -69,9 +69,12 @@ class RecordsController < ApplicationController
         format.json { render :show, status: :created, location: @record }
 
         # Change user's reputation
+        empty_values = record_params[:values_attributes].count { |index, params| params[:amount].empty? }
+        completeness = 1 - empty_values.to_f / record_params[:values_attributes].count
+
         current_reputation = current_user.reputation
         if current_reputation < 1000
-          new_reputation =  current_reputation + (1000 - current_reputation) * 0.1
+          new_reputation =  current_reputation + (1000 - current_reputation) * 0.1 * completeness
           if new_reputation.to_i == current_reputation.to_i
             new_reputation += 1
           end

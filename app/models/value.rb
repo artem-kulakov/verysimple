@@ -5,7 +5,7 @@ class Value < ActiveRecord::Base
 
   def self.amount(record, indicator)
   	value = where(record_id: record, indicator_id: indicator)
-  	if value.any?
+  	if value.any? and not value.first.amount.nil?
   		value.first.amount * value.first.unit.multiplier
   	else
   		nil
