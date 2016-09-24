@@ -74,7 +74,7 @@ class RecordsController < ApplicationController
       current_user.update(reputation: new_reputation)
     end
 
-    @record = Record.new(record_params.merge(:user_id => current_user.id, :reward => reward))
+    @record = Record.new(record_params.merge(user_id: current_user.id, reward: reward))
 
     respond_to do |format|
       if @record.save
@@ -91,9 +91,25 @@ class RecordsController < ApplicationController
   # PATCH/PUT /records/1.json
   def update
     respond_to do |format|
-      if @record.update(record_params)
+      # Reward
+      empty = @record.values.where(amount: nil).count
+      total = @record.values.count
+      was = 1 - empty / total.to_f
+
+      empty_values = record_params[:values_attributes].count { |index, params| params[:amount].empty? }
+      total_values = record_params[:values_attributes].count
+      now = 1 - empty_values / total_values.to_f
+
+      new_reward = @record.reward / was * now.to_f
+      reward_change = new_reward - @record.reward
+
+      flash[:alert] = reward_change
+      new_reputation = current_user.reputation + reward_change
+
+      if @record.update(record_params.merge(reward: new_reward))
         format.html { redirect_to root_path, notice: 'Record was successfully updated.' }
         format.json { render :show, status: :ok, location: @record }
+        current_user.update(reputation: new_reputation)
       else
         format.html { render :edit }
         format.json { render json: @record.errors, status: :unprocessable_entity }
