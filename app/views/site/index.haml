@@ -21,7 +21,6 @@
             - @indicators.each do |indicator|
               %th.text-xs-right= "#{indicator.name}, #{indicator.base_unit}"
             %th User
-            %th Reward
             %th
         %tbody
           - @records.each do |record|
@@ -29,10 +28,7 @@
               %td= record.company_name
               - @indicators.each do |indicator|
                 %td.text-xs-right= number_with_delimiter(@values.amount(record.id, indicator.id), delimiter: ',')
-              %td.text-xs-right
-                = record.user.email
-              %td.text-xs-right
-                = record.reward
+              %td= record.user.email
               %td.text-xs-right.text-nowrap
                 = link_to 'Edit', edit_record_path(record), :class => 'btn btn-success btn-sm'
                 - if not current_user.nil? and current_user.admin?

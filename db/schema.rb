@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923094032) do
+ActiveRecord::Schema.define(version: 20160924092514) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 20160923094032) do
     t.datetime "updated_at", null: false
     t.integer  "period_id"
     t.integer  "gaap_id"
-    t.integer  "reward"
     t.integer  "user_id"
   end
 

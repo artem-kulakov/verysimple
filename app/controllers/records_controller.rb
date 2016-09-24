@@ -61,25 +61,16 @@ class RecordsController < ApplicationController
   # POST /records
   # POST /records.json
   def create
-    # Change user's reputation
-    empty_values = record_params[:values_attributes].count { |index, params| params[:amount].empty? }
-    completeness = 1 - empty_values.to_f / record_params[:values_attributes].count
-    current_reputation = current_user.reputation
-    reward = (1000 - current_reputation) * 0.1 * completeness
-    if current_reputation < 1000
-      new_reputation =  current_reputation + reward
-      if new_reputation.to_i == current_reputation.to_i
-        new_reputation += 1
-      end
-      current_user.update(reputation: new_reputation)
-    end
-
-    @record = Record.new(record_params.merge(user_id: current_user.id, reward: reward))
+    # Increase user's reputation
+    values = record_params[:values_attributes].count { |index, params| not params[:amount].empty? }
+    new_reputation = current_user.reputation + values * 10
+    @record = Record.new(record_params.merge(user_id: current_user.id))
 
     respond_to do |format|
       if @record.save
         format.html { redirect_to root_path(period: record_params[:period_id], gaap: record_params[:gaap_id]), notice: 'Record was successfully created.' }
         format.json { render :show, status: :created, location: @record }
+        current_user.update(reputation: new_reputation)
       else
         format.html { render :new }
         format.json { render json: @record.errors, status: :unprocessable_entity }
@@ -92,16 +83,16 @@ class RecordsController < ApplicationController
   def update
     respond_to do |format|
       # Reward
-      old_values = @record.values.where.not(amount: nil).count
-      new_values = record_params[:values_attributes].count { |index, params| not params[:amount].empty? }
-      new_reward = @record.reward / old_values * new_values.to_f
-      reward_change = new_reward - @record.reward
-      new_reputation = current_user.reputation + reward_change
+      # old_values = @record.values.where.not(amount: nil).count
+      # new_values = record_params[:values_attributes].count { |index, params| not params[:amount].empty? }
+      # new_reward = @record.reward / old_values * new_values.to_f
+      # reward_change = new_reward - @record.reward
+      # new_reputation = current_user.reputation + reward_change
 
-      if @record.update(record_params.merge(reward: new_reward))
+      if @record.update(record_params)
         format.html { redirect_to root_path, notice: 'Record was successfully updated.' }
         format.json { render :show, status: :ok, location: @record }
-        current_user.update(reputation: new_reputation)
+        # current_user.update(reputation: new_reputation)
       else
         format.html { render :edit }
         format.json { render json: @record.errors, status: :unprocessable_entity }

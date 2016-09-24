@@ -1,5 +1,5 @@
 # User
-User.create!(email: 'artem.kulakov@gmail.com', password: 'hasanyone', reputation: 0, admin: true)
+User.create!(email: 'artem.kulakov@gmail.com', password: 'hasanyone', admin: true)
 User.create!(email: 'user@user.com', password: 'hasanyone')
 
 # Companies
@@ -60,7 +60,7 @@ end
 Company.first(2).each do |company|
   Period.first(2).each do |period|
     Gaap.first(2).each do |gaap|
-      Record.create!(company_id: company.id, period_id: period.id, gaap_id: gaap.id, user_id: 1, reward: 100)
+      Record.create!(company_id: company.id, period_id: period.id, gaap_id: gaap.id, user_id: 1)
     end
   end
 end
