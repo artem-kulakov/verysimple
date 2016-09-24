@@ -92,18 +92,10 @@ class RecordsController < ApplicationController
   def update
     respond_to do |format|
       # Reward
-      empty = @record.values.where(amount: nil).count
-      total = @record.values.count
-      was = 1 - empty / total.to_f
-
-      empty_values = record_params[:values_attributes].count { |index, params| params[:amount].empty? }
-      total_values = record_params[:values_attributes].count
-      now = 1 - empty_values / total_values.to_f
-
-      new_reward = @record.reward / was * now.to_f
+      old_values = @record.values.where.not(amount: nil).count
+      new_values = record_params[:values_attributes].count { |index, params| not params[:amount].empty? }
+      new_reward = @record.reward / old_values * new_values.to_f
       reward_change = new_reward - @record.reward
-
-      flash[:alert] = reward_change
       new_reputation = current_user.reputation + reward_change
 
       if @record.update(record_params.merge(reward: new_reward))
