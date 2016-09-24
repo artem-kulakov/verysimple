@@ -82,17 +82,16 @@ class RecordsController < ApplicationController
   # PATCH/PUT /records/1.json
   def update
     respond_to do |format|
-      # Reward
-      # old_values = @record.values.where.not(amount: nil).count
-      # new_values = record_params[:values_attributes].count { |index, params| not params[:amount].empty? }
-      # new_reward = @record.reward / old_values * new_values.to_f
-      # reward_change = new_reward - @record.reward
-      # new_reputation = current_user.reputation + reward_change
+      # Change user's reputation
+      old_values = @record.values.where.not(amount: nil).count
+      new_values = record_params[:values_attributes].count { |index, params| not params[:amount].empty? }
+      values = new_values - old_values
+      new_reputation = current_user.reputation + values * 10
 
       if @record.update(record_params)
         format.html { redirect_to root_path, notice: 'Record was successfully updated.' }
         format.json { render :show, status: :ok, location: @record }
-        # current_user.update(reputation: new_reputation)
+        current_user.update(reputation: new_reputation)
       else
         format.html { render :edit }
         format.json { render json: @record.errors, status: :unprocessable_entity }
