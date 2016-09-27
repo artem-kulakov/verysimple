@@ -88,10 +88,63 @@ class RecordsController < ApplicationController
       values = new_values - old_values
       new_reputation = current_user.reputation + values * 10
 
-      if @record.update(record_params)
+      olds = []
+      @record.values.each do |value|
+        olds << value.amount
+      end
+
+      news = []
+      record_params[:values_attributes].each do |k, value|
+        news << value[:amount]
+      end
+
+      woo = []
+      olds.each_with_index do |old, index|
+        if not old.nil? and news[index].empty?
+          woo << 'deleted'
+        elsif old.nil? and not news[index].empty?
+          woo << 'new'
+        elsif old.nil? and news[index].empty?
+          woo << 'nothing'
+        else
+          woo << news[index].to_f / old - 1
+        end
+      end
+
+      old_user = @record.user
+      old_user_reputation = old_user.reputation
+      new_user_reputation = current_user.reputation
+      reputation_change = 0
+      zoo = []
+      woo.each do |deviation|
+        if deviation == 'new'
+          new_user_reputation += 10
+        elsif deviation == 'deleted'
+          new_user_reputation -= 5
+        elsif deviation == 'nothing'
+          #
+        else
+          if deviation.abs <= 0.05
+            reputation_change = deviation.abs * 100
+            old_user_reputation -= reputation_change
+            new_user_reputation += reputation_change
+          else
+            old_user_reputation -= 5
+            new_user_reputation += 5
+          end
+        end
+      end
+
+      if @record.update(record_params.merge(user_id: current_user.id))
         format.html { redirect_to root_path, notice: 'Record was successfully updated.' }
         format.json { render :show, status: :ok, location: @record }
-        current_user.update(reputation: new_reputation)
+
+        if current_user.id == old_user.id
+          current_user.update(reputation: new_reputation)
+        else
+          old_user.update(reputation: old_user_reputation)
+          current_user.update(reputation: new_user_reputation)
+        end
       else
         format.html { render :edit }
         format.json { render json: @record.errors, status: :unprocessable_entity }

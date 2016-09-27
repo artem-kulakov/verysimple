@@ -1,5 +1,5 @@
 # User
-User.create!(email: 'artem.kulakov@gmail.com', password: 'hasanyone', admin: true)
+User.create!(email: 'artem.kulakov@gmail.com', password: 'hasanyone', reputation: 240, admin: true)
 User.create!(email: 'user@user.com', password: 'hasanyone')
 
 # Companies
@@ -77,6 +77,6 @@ amounts = [1000, 500, 100,
            8000, 4000, 800]
 Record.all.each do |record|
   Indicator.first(3).each do |indicator|
-    Value.create!(record_id: record.id, indicator_id: indicator.id, amount: amounts.shift, unit_id: 1)
+    Value.create!(record_id: record.id, indicator_id: indicator.id, amount: amounts.shift, unit_id: 2)
   end
 end
