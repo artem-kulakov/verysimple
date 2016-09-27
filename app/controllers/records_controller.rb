@@ -63,14 +63,14 @@ class RecordsController < ApplicationController
   def create
     # Increase user's reputation
     values = record_params[:values_attributes].count { |index, params| not params[:amount].empty? }
-    new_reputation = current_user.reputation + values * 10
+    reputation = current_user.reputation + values * 10
     @record = Record.new(record_params.merge(user_id: current_user.id))
 
     respond_to do |format|
       if @record.save
         format.html { redirect_to root_path(period: record_params[:period_id], gaap: record_params[:gaap_id]), notice: 'Record was successfully created.' }
         format.json { render :show, status: :created, location: @record }
-        current_user.update(reputation: new_reputation)
+        current_user.update(reputation: reputation)
       else
         format.html { render :new }
         format.json { render json: @record.errors, status: :unprocessable_entity }
@@ -86,48 +86,45 @@ class RecordsController < ApplicationController
       old_values = @record.values.where.not(amount: nil).count
       new_values = record_params[:values_attributes].count { |index, params| not params[:amount].empty? }
       values = new_values - old_values
-      new_reputation = current_user.reputation + values * 10
+      reputation = current_user.reputation + values * 10
 
-      olds = []
+      old_values = []
       @record.values.each do |value|
-        olds << value.amount
+        old_values << value.amount
       end
 
-      news = []
+      new_values = []
       record_params[:values_attributes].each do |k, value|
-        news << value[:amount]
+        new_values << value[:amount]
       end
 
-      woo = []
-      olds.each_with_index do |old, index|
-        if not old.nil? and news[index].empty?
-          woo << 'deleted'
-        elsif old.nil? and not news[index].empty?
-          woo << 'new'
-        elsif old.nil? and news[index].empty?
-          woo << 'nothing'
+      actions = []
+      old_values.each_with_index do |old_value, index|
+        if not old_value.nil? and new_values[index].empty?
+          actions << 'deleted'
+        elsif old_value.nil? and not new_values[index].empty?
+          actions << 'new'
+        elsif old_value.nil? and new_values[index].empty?
+          actions << 'nothing'
         else
-          woo << news[index].to_f / old - 1
+          actions << new_values[index].to_f / old_value - 1
         end
       end
 
       old_user = @record.user
       old_user_reputation = old_user.reputation
       new_user_reputation = current_user.reputation
-      reputation_change = 0
-      zoo = []
-      woo.each do |deviation|
-        if deviation == 'new'
+      actions.each do |action|
+        if action == 'new'
           new_user_reputation += 10
-        elsif deviation == 'deleted'
+        elsif action == 'deleted'
           new_user_reputation -= 5
-        elsif deviation == 'nothing'
+        elsif action == 'nothing'
           #
         else
-          if deviation.abs <= 0.05
-            reputation_change = deviation.abs * 100
-            old_user_reputation -= reputation_change
-            new_user_reputation += reputation_change
+          if action.abs <= 0.05
+            old_user_reputation -= action.abs * 100
+            new_user_reputation += action.abs * 100
           else
             old_user_reputation -= 5
             new_user_reputation += 5
@@ -140,7 +137,7 @@ class RecordsController < ApplicationController
         format.json { render :show, status: :ok, location: @record }
 
         if current_user.id == old_user.id
-          current_user.update(reputation: new_reputation)
+          current_user.update(reputation: reputation)
         else
           old_user.update(reputation: old_user_reputation)
           current_user.update(reputation: new_user_reputation)
