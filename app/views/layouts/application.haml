@@ -28,6 +28,8 @@
     .container
       - if flash[:alert]
         .alert.alert-danger= flash[:alert]
+      - if flash[:points]
+        .alert.alert-warning= flash[:points]
       = yield
 
     %footer.footer
