@@ -30,7 +30,8 @@
                 %td.text-xs-right= number_with_delimiter(@values.amount(record.id, indicator.id), delimiter: ',')
               %td= record.user.email
               %td.text-xs-right.text-nowrap
-                = link_to 'Edit', edit_record_path(record), :class => 'btn btn-success btn-sm'
+                - if not current_user.nil? and current_user.reputation >= record.user.reputation
+                  = link_to 'Edit', edit_record_path(record), :class => 'btn btn-success btn-sm'
                 - if not current_user.nil? and current_user.admin?
                   = link_to 'Delete', record_path(record.id, :period => @period.id, :gaap => @gaap.id), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
 

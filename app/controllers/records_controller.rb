@@ -2,6 +2,7 @@ class RecordsController < ApplicationController
   before_action :verify_admin, only: [:index, :destroy]
   before_action :authenticate_user!
   before_action :set_record, only: [:show, :edit, :update, :destroy]
+  before_action :check_authority, only: [:edit]
 
   # GET /records
   # GET /records.json
@@ -139,7 +140,6 @@ class RecordsController < ApplicationController
       points = current_user_reputation - current_user.reputation
       flash[:points] = sprintf("%+d", points) + ' points for editing record'
 
-      # Update record
       if @record.update(record_params.merge(user_id: current_user.id))
         format.html { redirect_to root_path, notice: 'Record was successfully updated.' }
         format.json { render :show, status: :ok, location: @record }
@@ -176,5 +176,13 @@ class RecordsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def record_params
       params.require(:record).permit(:company_id, :period_id, :gaap_id, values_attributes: [:id, :indicator_id, :amount, :unit_id])
+    end
+
+    # Check authority for editing somebody's record
+    def check_authority
+      if current_user.reputation < @record.user.reputation
+        flash[:alert] = "You need reputation higher than #{@record.user.reputation} to edit this record"
+        redirect_to root_path
+      end
     end
 end
