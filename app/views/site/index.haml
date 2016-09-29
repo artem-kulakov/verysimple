@@ -36,8 +36,3 @@
                   = link_to 'Delete', record_path(record.id, :period => @period.id, :gaap => @gaap.id), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
 
     = link_to 'New record', new_record_path(period: @period.id, gaap: @gaap.id), class: 'btn btn-primary'
-
-    - require 'open-uri'
-    - string = open('https://openexchangerates.org/api/currencies.json', {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}).read
-    - hash = JSON.parse string
-    = hash

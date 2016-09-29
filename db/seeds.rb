@@ -80,3 +80,34 @@ Record.all.each do |record|
     Value.create!(record_id: record.id, indicator_id: indicator.id, amount: amounts.shift, unit_id: 2)
   end
 end
+
+
+# Currencies
+require 'open-uri'
+string = open('https://openexchangerates.org/api/currencies.json', {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}).read
+hash = JSON.parse string
+hash.each do |code, name|
+  Currency.create!(code: code, name: name)
+end
+
+# FX rates
+# Save json with FX rates to file
+# string = open('https://openexchangerates.org/api/historical/2014-12-31.json?app_id=5b50e8cb7f9346a885b00d1a274b2b89', {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}).read
+# File.open("/home/rtmklkv/apps/benchmark/test.json", "w") { |file| file.write string }
+
+ids = Hash[Currency.all.pluck(:code, :id)]
+
+string = open(Rails.root + 'test.json').read
+json = JSON.parse string
+
+bar = Period.find(1)
+
+json['rates'].each do |code, rate|
+  foo = bar.fx_rates.new
+  foo.currency_id = ids[code]
+  foo.rate = rate
+end
+
+
+# Save day and rates
+bar.save
