@@ -138,7 +138,9 @@ class RecordsController < ApplicationController
       end
 
       points = current_user_reputation - current_user.reputation
-      flash[:points] = sprintf("%+d", points) + ' points for editing record'
+      unless points == 0
+        flash[:points] = sprintf("%+d", points) + ' points for editing record'
+      end
 
       if @record.update(record_params.merge(user_id: current_user.id))
         format.html { redirect_to root_path, notice: 'Record was successfully updated.' }
