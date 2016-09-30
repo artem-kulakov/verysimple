@@ -100,14 +100,14 @@ ids = Hash[Currency.all.pluck(:code, :id)]
 string = open(Rails.root + 'fx.json').read
 json = JSON.parse string
 
-bar = Period.find(1)
+day = Period.find(1)
 
 json['rates'].each do |code, rate|
-  foo = bar.rates.new
-  foo.currency_id = ids[code]
-  foo.rate = rate
+  rates = day.rates.new
+  rates.currency_id = ids[code]
+  rates.rate = rate
 end
 
 
 # Save day and rates
-bar.save
+day.save
