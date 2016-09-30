@@ -20,7 +20,11 @@
           %tr
             %th
             - @indicators.each do |indicator|
-              %th.text-xs-right= "#{indicator.name}, #{indicator.base_unit}"
+              %th.text-xs-right
+                - if indicator.type.name == 'currency'
+                  = indicator.name
+                - else
+                  = "#{indicator.name}, #{indicator.base_unit}"
             %th User
             %th
         %tbody
