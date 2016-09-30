@@ -27,7 +27,8 @@
             %tr
               %td= record.company_name
               - @indicators.each do |indicator|
-                %td.text-xs-right= number_with_delimiter(@values.amount(record.id, indicator.id), delimiter: ',')
+                %td.text-xs-right
+                  = number_with_precision(@values.amount(record.id, indicator.id), precision: 1, delimiter: ',')
               %td= record.user.email
               %td.text-xs-right.text-nowrap
                 - if not current_user.nil? and current_user.reputation >= record.user.reputation

@@ -3,10 +3,17 @@ class Value < ActiveRecord::Base
   belongs_to :indicator
   belongs_to :unit
 
-  def self.amount(record, indicator)
-  	value = where(record_id: record, indicator_id: indicator)
-  	if value.any? and not value.first.amount.nil?
-  		value.first.amount * value.first.unit.multiplier
+  def self.amount(record_id, indicator_id)
+  	value = where(record_id: record_id, indicator_id: indicator_id).first
+  	unless value.amount.nil?
+      if value.unit.type.name == 'currency'
+        currency_id = Currency.where(code: value.unit.name).pluck(:id).first
+        original_to_usd = Rate.where(period_id: value.record.period_id, currency_id: currency_id).pluck(:rate).first
+        usd_to_target = Rate.where(period_id: value.record.period_id, currency_id: 48).pluck(:rate).first
+        value.amount / original_to_usd * usd_to_target
+      else
+  		  value.amount * value.unit.multiplier
+      end
   	else
   		nil
   	end
