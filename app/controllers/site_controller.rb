@@ -7,7 +7,7 @@ class SiteController < ApplicationController
     @gaap = Gaap.find(params[:gaap] || 1)
 
     @currencies = Currency.order(:code)
-    @currency = Currency.find(params[:currency] || 152)
+    @currency = Currency.find(params[:currency] || 150)
 
   	@indicators = Indicator.order(:order)
   	@records = Record.where(period_id: @period, gaap_id: @gaap)

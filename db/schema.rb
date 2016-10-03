@@ -72,12 +72,6 @@ ActiveRecord::Schema.define(version: 20160930154933) do
   add_index "records", ["period_id"], name: "index_records_on_period_id"
   add_index "records", ["user_id"], name: "index_records_on_user_id"
 
-  create_table "sections", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -86,14 +80,12 @@ ActiveRecord::Schema.define(version: 20160930154933) do
 
   create_table "units", force: :cascade do |t|
     t.string   "name"
-    t.integer  "section_id"
     t.integer  "type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal  "multiplier"
   end
 
-  add_index "units", ["section_id"], name: "index_units_on_section_id"
   add_index "units", ["type_id"], name: "index_units_on_type_id"
 
   create_table "users", force: :cascade do |t|

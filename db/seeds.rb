@@ -38,21 +38,17 @@ Indicator.create!(name: 'Oil production', order: 3, type_id: 2)
 
 # Units
 
-['Financial', 'Operational'].each do |section|
-  Section.create!(name: section)
-end
-
 ['currency', 'oil'].each do |type|
   Type.create!(name: type)
 end
 
 ['RUB', 'USD', 'EUR'].each do |name|
-  Unit.create!(name: name, section_id: 1, type_id: 1)
+  Unit.create!(name: name, type_id: 1)
 end
 
 [['mln bbl', 1],
  ['mln ton', 7.33]].each do |name, multiplier|
-  Unit.create!(name: name, section_id: 2, type_id: 2, multiplier: multiplier)
+  Unit.create!(name: name, type_id: 2, multiplier: multiplier)
 end
 
 
@@ -83,11 +79,10 @@ end
 
 
 # Currencies
-require 'open-uri'
-string = open('https://openexchangerates.org/api/currencies.json', {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}).read
-hash = JSON.parse string
-hash.each do |code, name|
-  Currency.create!(code: code, name: name)
+string = open(Rails.root + 'fx.json').read
+json = JSON.parse string
+json['rates'].each do |code, rate|
+  Currency.create!(code: code)
 end
 
 # FX rates
