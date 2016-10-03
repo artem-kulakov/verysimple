@@ -16,7 +16,8 @@
             %tr
               %td= company.name
               %td.text-xs-right.text-nowrap
-                = link_to 'Edit', edit_company_path(company), :class => 'btn btn-success btn-sm'
+                - if not current_user.nil? and current_user.reputation >= company.user.reputation
+                  = link_to 'Edit', edit_company_path(company), :class => 'btn btn-success btn-sm'
                 - if not current_user.nil? and current_user.admin?
                   = link_to 'Delete', company, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
 

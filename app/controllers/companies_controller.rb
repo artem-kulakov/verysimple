@@ -2,6 +2,7 @@ class CompaniesController < ApplicationController
   before_action :verify_admin, only: [:destroy]
   before_action :authenticate_user!, except: [:index]
   before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :check_authority, only: [:edit]
 
   # GET /companies
   # GET /companies.json
@@ -77,5 +78,13 @@ class CompaniesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
       params.require(:company).permit(:name)
+    end
+
+    # Check authority for editing somebody's company
+    def check_authority
+      if current_user.reputation < @company.user.reputation
+        flash[:alert] = "You need reputation higher than #{@company.user.reputation} to edit this company"
+        redirect_to companies_path
+      end
     end
 end

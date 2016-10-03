@@ -7,7 +7,7 @@ companies = ['Rosneft',
              'Gazprom',
              'Lukoil']
 companies.each do |company|
-  Company.create!(name: company)
+  Company.create!(name: company, user_id: 1)
 end
 
 
