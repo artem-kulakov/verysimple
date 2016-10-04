@@ -54,7 +54,7 @@ end
 
 # Records
 Company.first(2).each do |company|
-  Period.first(2).each do |period|
+  Period.where("ending < ?", Date.today).order(:ending).last(2).each do |period|
     Gaap.first(2).each do |gaap|
       Record.create!(company_id: company.id, period_id: period.id, gaap_id: gaap.id, user_id: 1)
     end
@@ -101,7 +101,7 @@ ids = Hash[Currency.all.pluck(:code, :id)]
 string = open(Rails.root + 'fx.json').read
 json = JSON.parse string
 
-day = Period.find(1)
+day = Period.where("ending < ?", Date.today).order(:ending).last
 
 json['rates'].each do |code, rate|
   rates = day.rates.new
