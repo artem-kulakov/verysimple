@@ -63,7 +63,7 @@ end
 
 
 # Values
-amounts = [1000, 500, 100, 100,
+amounts = [1000, 500, 200, 100,
            2000, 1000, 200, 100,
            3000, 1500, 300, 100,
            4000, 2000, 400, 100,
@@ -73,7 +73,13 @@ amounts = [1000, 500, 100, 100,
            8000, 4000, 800, 100]
 Record.all.each do |record|
   Indicator.first(4).each do |indicator|
-    Value.create!(record_id: record.id, indicator_id: indicator.id, amount: amounts.shift, unit_id: 1)
+    amount = amounts.shift
+    if amount == 100
+      unit_id = 4
+    else
+      unit_id = 1
+    end
+    Value.create!(record_id: record.id, indicator_id: indicator.id, amount: amount, unit_id: unit_id)
   end
 end
 
