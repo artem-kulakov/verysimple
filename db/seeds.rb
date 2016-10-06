@@ -26,18 +26,23 @@ end
 
 
 # Indicators
-indicators = ['Revenues',
-             'EBITDA',
-             'Net income']
-indicators.each_with_index do |indicator, index|
-  Indicator.create!(name: indicator, order: index, type_id: 1)
+[ 'Revenues',
+  'EBITDA',
+  'Net income',
+  'Operating cash flow',
+  'Capital expenditure',
+  'Net debt'].each_with_index do |indicator, index|
+    Indicator.create!(name: indicator, order: index, type_id: 1)
 end
 
-Indicator.create!(name: 'Oil production', order: 3, type_id: 2)
+[ 'Oil-equivalent production',
+  'Liquids production',
+  'Natural gas production'].each_with_index do |indicator, index|
+    Indicator.create!(name: indicator, order: index+6, type_id: 2)
+end
 
 
 # Units
-
 ['currency', 'oil'].each do |type|
   Type.create!(name: type)
 end
@@ -46,8 +51,8 @@ end
   Unit.create!(name: name, type_id: 1)
 end
 
-[['mln bbl', 1],
- ['mln ton', 7.33]].each do |name, multiplier|
+[['kboe/d', 1],
+ ['bcf/d', 1/5.8]].each do |name, multiplier|
   Unit.create!(name: name, type_id: 2, multiplier: multiplier)
 end
 
@@ -73,13 +78,7 @@ amounts = [1000, 500, 200, 100,
            8000, 4000, 800, 100]
 Record.all.each do |record|
   Indicator.first(4).each do |indicator|
-    amount = amounts.shift
-    if amount == 100
-      unit_id = 4
-    else
-      unit_id = 1
-    end
-    Value.create!(record_id: record.id, indicator_id: indicator.id, amount: amount, unit_id: unit_id)
+    Value.create!(record_id: record.id, indicator_id: indicator.id, amount: amounts.shift, unit_id: 1)
   end
 end
 
