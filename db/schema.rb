@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161003154946) do
+ActiveRecord::Schema.define(version: 20161007051038) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -50,6 +50,17 @@ ActiveRecord::Schema.define(version: 20161003154946) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "topic_id"
+    t.string   "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "posts", ["topic_id"], name: "index_posts_on_topic_id"
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+
   create_table "rates", force: :cascade do |t|
     t.integer  "period_id"
     t.integer  "currency_id"
@@ -74,6 +85,16 @@ ActiveRecord::Schema.define(version: 20161003154946) do
   add_index "records", ["gaap_id"], name: "index_records_on_gaap_id"
   add_index "records", ["period_id"], name: "index_records_on_period_id"
   add_index "records", ["user_id"], name: "index_records_on_user_id"
+
+  create_table "topics", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "topics", ["user_id"], name: "index_topics_on_user_id"
 
   create_table "types", force: :cascade do |t|
     t.string   "name"

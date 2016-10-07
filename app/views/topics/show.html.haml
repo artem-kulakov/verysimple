@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @topic.user
+%p
+  %b Title:
+  = @topic.title
+%p
+  %b Body:
+  = @topic.body
+
+= link_to 'Edit', edit_topic_path(@topic)
+\|
+= link_to 'Back', topics_path
