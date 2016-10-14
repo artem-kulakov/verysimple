@@ -111,3 +111,19 @@ end
 
 # Save day and rates
 day.save
+
+
+# Forum
+ [['One', 'First message'],
+  ['Two', 'Second message'],
+  ['Three', 'Third message']].each do |title, body|
+    Topic.create!(user_id: 1, title: title, body: body)
+end
+
+['First post', 'Second post', 'Third post'].each do |body|
+  Post.create!(user_id: 2, topic_id: 1, body: body)
+end
+
+['4th post', '5th post'].each do |body|
+  Post.create!(user_id: 2, topic_id: 2, body: body)
+end

@@ -1,25 +1,23 @@
-%h1 Listing topics
+- @title = 'Home'
 
-%table
-  %thead
-    %tr
-      %th User
-      %th Title
-      %th Body
-      %th
-      %th
-      %th
+.row
+  .col-xs-12
 
-  %tbody
-    - @topics.each do |topic|
-      %tr
-        %td= topic.user
-        %td= topic.title
-        %td= topic.body
-        %td= link_to 'Show', topic
-        %td= link_to 'Edit', edit_topic_path(topic)
-        %td= link_to 'Destroy', topic, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    %h1 Forum
 
-%br
+    .table-responsive
+      %table.table
+        %tbody
+          - @topics.each do |topic|
+            %tr
+              %td
+                .topic= link_to topic.title, topic
+                .small
+                  %span.text-muted= time_ago_in_words(topic.updated_at) + ' ago'
+                  = topic.user.email
+                  %strong.text-muted= topic.user.reputation
+                  - if current_user and current_user.id == topic.user.id and not topic.posts.any?
+                    = link_to 'Edit', edit_topic_path(topic), class: 'text-success'
+                    = link_to 'Delete', topic, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'text-danger'
 
-= link_to 'New Topic', new_topic_path
+    = link_to 'New Topic', new_topic_path, class: 'btn btn-sm btn-primary'

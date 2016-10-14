@@ -2,7 +2,7 @@
 
 %p
   %b User:
-  = @topic.user
+  = @topic.user.email
 %p
   %b Title:
   = @topic.title
@@ -13,3 +13,5 @@
 = link_to 'Edit', edit_topic_path(@topic)
 \|
 = link_to 'Back', topics_path
+
+= render 'posts'
