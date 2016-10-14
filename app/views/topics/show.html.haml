@@ -1,17 +1,38 @@
-%p#notice= notice
+- @title = @topic.title
 
-%p
-  %b User:
-  = @topic.user.email
-%p
-  %b Title:
-  = @topic.title
-%p
-  %b Body:
-  = @topic.body
+.row
+  .col-xs-12
 
-= link_to 'Edit', edit_topic_path(@topic)
-\|
-= link_to 'Back', topics_path
+    %h1= @topic.title
 
-= render 'posts'
+    .table-responsive
+      %table.table
+        %tbody
+          %tr
+            %td
+              =@topic.body
+
+              .small
+                %span.text-muted= time_ago_in_words(@topic.updated_at) + ' ago'
+                = @topic.user.email
+                %strong.text-muted= @topic.user.reputation
+                - if current_user and current_user.id == @topic.user.id and not @topic.posts.any?
+                  = link_to 'Edit', edit_topic_path(@topic), class: 'text-success'
+                  = link_to 'Delete', @topic, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'text-danger'
+
+    .table-responsive
+      %table.table
+        %tbody
+          - @topic.posts.each do |post|
+            %tr
+              %td
+                = post.body
+                .small
+                  %span.text-muted= time_ago_in_words(post.updated_at) + ' ago'
+                  = post.user.email
+                  %strong.text-muted= post.user.reputation
+                  - if current_user and current_user.id == post.user.id and not post.posts.any?
+                    = link_to 'Edit', edit_post_path(post), class: 'text-success'
+                    = link_to 'Delete', post, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'text-danger'
+
+    = link_to 'New Post', new_post_path, class: 'btn btn-sm btn-primary'
