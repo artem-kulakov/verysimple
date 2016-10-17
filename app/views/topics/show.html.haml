@@ -32,5 +32,5 @@
                     = link_to 'Edit', edit_post_path(post), class: 'text-success'
                     = link_to 'Delete', post, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'text-danger'
 
-    = link_to 'New Post', new_post_path, class: 'btn btn-sm btn-primary'
+    = link_to 'New Post', new_post_path(topic: @topic.id), class: 'btn btn-sm btn-primary'
     = link_to 'Back to topics', topics_path, class: 'btn btn-sm btn-secondary'
