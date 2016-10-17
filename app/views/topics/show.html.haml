@@ -31,7 +31,7 @@
                   %span.text-muted= time_ago_in_words(post.updated_at) + ' ago'
                   = post.user.email
                   %strong.text-muted= post.user.reputation
-                  - if current_user and current_user.id == post.user.id and not post.posts.any?
+                  - if current_user and current_user.id == post.user.id
                     = link_to 'Edit', edit_post_path(post), class: 'text-success'
                     = link_to 'Delete', post, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'text-danger'
 
