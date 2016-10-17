@@ -20,9 +20,6 @@
                   = link_to 'Edit', edit_topic_path(@topic), class: 'text-success'
                   = link_to 'Delete', @topic, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'text-danger'
 
-    .table-responsive
-      %table.table
-        %tbody
           - @topic.posts.each do |post|
             %tr
               %td
