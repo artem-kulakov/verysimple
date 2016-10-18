@@ -1,13 +1,9 @@
 Rails.application.routes.draw do
-  resources :posts
+  root 'site#index'
+  resources :posts, except: [:index, :show]
   resources :topics
   devise_for :users
-  resources :units
-  resources :gaaps
-  root 'site#index'
-
   resources :companies
-  resources :periods
 
   resources :records do
     collection do
