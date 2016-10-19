@@ -1,7 +1,7 @@
-%h1 Editing topic
+- @title = 'Editing topic'
 
-= render 'form'
+.form-container
+  .heading-container
+    %h1= @title
 
-= link_to 'Show', @topic
-\|
-= link_to 'Back', topics_path
+  = render 'form'
