@@ -19,7 +19,7 @@
           = link_to 'Forum', topics_path, class: "nav-item nav-link #{@topics_active} #{@posts_active}"
           - if user_signed_in?
             .pull-xs-right
-              = link_to "#{current_user.email} (#{current_user.reputation})", edit_user_registration_path, class: "nav-item nav-link"
+              = link_to "#{current_user.name} #{current_user.reputation}", edit_user_registration_path, class: "nav-item nav-link"
               = link_to 'Log out', destroy_user_session_path, method: :delete, class: "nav-item nav-link"
           - else
             .pull-xs-right

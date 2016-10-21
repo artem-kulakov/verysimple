@@ -14,7 +14,7 @@
                 .topic= link_to topic.title, topic
                 .small
                   %span.text-muted= time_ago_in_words(topic.updated_at) + ' ago'
-                  = topic.user.email
+                  = topic.user.name
                   %strong.text-muted= topic.user.reputation
                   - if current_user and current_user.id == topic.user.id and not topic.posts.any?
                     = link_to 'Edit', edit_topic_path(topic), class: 'text-success'

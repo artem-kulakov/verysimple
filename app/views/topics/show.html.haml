@@ -14,7 +14,7 @@
 
               .small
                 %span.text-muted= time_ago_in_words(@topic.updated_at) + ' ago'
-                = @topic.user.email
+                = @topic.user.name
                 %strong.text-muted= @topic.user.reputation
                 - if current_user and current_user.id == @topic.user.id and not @topic.posts.any?
                   = link_to 'Edit', edit_topic_path(@topic), class: 'text-success'
@@ -26,7 +26,7 @@
                 = post.body
                 .small
                   %span.text-muted= time_ago_in_words(post.updated_at) + ' ago'
-                  = post.user.email
+                  = post.user.name
                   %strong.text-muted= post.user.reputation
                   - if current_user and current_user.id == post.user.id and @topic.posts.last == post
                     = link_to 'Edit', edit_post_path(post, topic: @topic.id), class: 'text-success'

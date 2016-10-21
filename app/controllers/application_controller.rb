@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_active_nav_item, :set_button_color
+  before_action :strong_params, if: :devise_controller?
 
   # Never render layout for Ajax requests
   layout proc { false if request.xhr? }
@@ -32,5 +33,10 @@ class ApplicationController < ActionController::Base
       else
         redirect_to root_path
       end
+    end
+
+    def strong_params
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     end
 end

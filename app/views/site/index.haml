@@ -34,7 +34,7 @@
               - @indicators.each do |indicator|
                 %td.text-xs-right
                   = number_with_precision(@values.amount(record.id, indicator.id, @currency.id), precision: 1, delimiter: ',')
-              %td= record.user.email
+              %td= record.user.name
               %td.text-xs-right.text-nowrap
                 - if not current_user.nil? and current_user.reputation >= record.user.reputation
                   = link_to 'Edit', edit_record_path(record), :class => 'btn btn-success btn-sm'
