@@ -1,6 +1,7 @@
 class Company < ActiveRecord::Base
   has_one :record, dependent: :destroy
   belongs_to :user
+  belongs_to :industry
   validates :name, presence: true, uniqueness: true
 
   def self.without_records(period_id, gaap_id)
