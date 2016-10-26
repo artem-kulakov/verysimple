@@ -2,14 +2,24 @@
 User.create!(email: 'me@me.com', password: 'hasanyone', reputation: 240, admin: true, name: 'Artem')
 User.create!(email: 'user@user.com', password: 'hasanyone', name: 'User')
 
-# Companies
-companies = ['Rosneft',
-             'Gazprom',
-             'Lukoil']
-companies.each do |company|
-  Company.create!(name: company, user_id: 1)
+# Industries
+['Oil and gas',
+ 'Telecom'].each do |industry|
+  Industry.create!(name: industry)
 end
 
+# Companies
+['Rosneft',
+ 'Gazprom',
+ 'Lukoil'].each do |company|
+  Company.create!(name: company, user_id: 1, industry_id: 1)
+end
+
+['MTS',
+ 'Vimpelcom',
+ 'Megafon'].each do |company|
+  Company.create!(name: company, user_id: 1, industry_id: 2)
+end
 
 # Periods
 (2014..2018).to_a.each do |year|
@@ -58,7 +68,7 @@ end
 
 
 # Records
-Company.first(2).each do |company|
+Company.where(id: [1, 4]).each do |company|
   Period.where("ending < ?", Date.today).order(:ending).last(2).each do |period|
     Gaap.first(2).each do |gaap|
       Record.create!(company_id: company.id, period_id: period.id, gaap_id: gaap.id, user_id: 1)
