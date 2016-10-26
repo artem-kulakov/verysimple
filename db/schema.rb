@@ -11,15 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026050923) do
+ActiveRecord::Schema.define(version: 20161026051241) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "user_id"
+    t.integer  "industry_id"
   end
 
+  add_index "companies", ["industry_id"], name: "index_companies_on_industry_id"
   add_index "companies", ["user_id"], name: "index_companies_on_user_id"
 
   create_table "currencies", force: :cascade do |t|
