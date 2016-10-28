@@ -7,8 +7,8 @@
           %li= msg
 
   .form-group.row
-    = f.label :name, class: 'col-xs-5 col-left form-control-label'
-    .col-xs-7.col-right
+    = f.label :name, class: 'col-xs-4 col-left form-control-label'
+    .col-xs-8.col-sm-4
       = f.text_field :name, class: 'form-control', :autofocus => true
       
   - if params[:new_record]
@@ -17,8 +17,8 @@
     = hidden_field_tag(:gaap, params[:gaap])
 
   .form-group.row
-    .col-xs-5.col-left
-    .col-xs-7.col-right
+    .col-xs-4
+    .col-xs-8
       = f.submit 'Save', class: "btn btn-#{@color}"
       - if params[:new_record]
         = link_to 'Cancel', new_record_path(period: params[:period], gaap: params[:gaap]), class: 'btn btn-secondary'
