@@ -45,4 +45,4 @@
       .col-xs-4
       .col-xs-8
         = f.submit 'Save', class: 'btn btn-primary', tabindex: tabindex + 5
-        = link_to 'Cancel', root_path(period: @period_id, gaap: @gaap_id), class: 'btn btn-secondary'
+        = link_to 'Cancel', root_path(industry: params[:industry], period: @period_id, gaap: @gaap_id), class: 'btn btn-secondary'
