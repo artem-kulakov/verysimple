@@ -3,14 +3,16 @@
 .row
   .col-xs-12
 
-    %h1 Listing companies
+    %h1= @title
+
+    = form_tag companies_path, method: 'get', class: 'selector' do
+      %ul.list-inline
+        %li.list-inline-item= select_tag :industry, options_from_collection_for_select(@industries, :id, :name, @industry_id), onchange: 'this.form.submit()', class: 'form-control'
+      = submit_tag 'submit'
+      = javascript_tag "$('.selector input').hide()"
 
     .table-responsive
       %table.table.table-inverse.dark-background
-        %thead
-          %tr
-            %th Name
-            %th
         %tbody
           - @companies.each do |company|
             %tr

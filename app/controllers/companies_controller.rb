@@ -7,7 +7,10 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.all
+    @industry_id = params[:industry] || 1
+    @industries = Industry.order(:name)
+
+    @companies = Company.where(industry_id: @industry_id).order(:name)
   end
 
   # GET /companies/1

@@ -14,8 +14,8 @@
     %nav.navbar.navbar-light.navbar-full.bg-faded
       .container
         .nav.navbar-nav
-          = link_to 'Home', root_path, class: "nav-item nav-link #{@site_active}"
-          = link_to 'Companies', companies_path, class: "nav-item nav-link #{@companies_active}"
+          = link_to 'Home', root_path(industry: params[:industry]), class: "nav-item nav-link #{@site_active}"
+          = link_to 'Companies', companies_path(industry: params[:industry]), class: "nav-item nav-link #{@companies_active}"
           = link_to 'Forum', topics_path, class: "nav-item nav-link #{@topics_active} #{@posts_active}"
           - if user_signed_in?
             .pull-xs-right
