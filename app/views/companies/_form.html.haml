@@ -7,10 +7,15 @@
           %li= msg
 
   .form-group.row
-    = f.label :name, class: 'col-xs-4 col-left form-control-label'
+    = f.label :name, class: 'col-xs-4 form-control-label'
     .col-xs-8.col-sm-4
       = f.text_field :name, class: 'form-control', :autofocus => true
       
+  .form-group.row
+    = f.label :industry, class: 'col-xs-4 form-control-label'
+    .col-xs-8.col-sm-4
+      = f.select :industry_id, options_from_collection_for_select(Industry.all, :id, :name, params[:industry]), {}, {class: "form-control c-select"}
+
   - if params[:new_record]
     = hidden_field_tag(:new_record, true)
     = hidden_field_tag(:period, params[:period])

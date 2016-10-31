@@ -31,7 +31,7 @@ class CompaniesController < ApplicationController
   # POST /companies
   # POST /companies.json
   def create
-    @company = Company.new(company_params)
+    @company = Company.new(company_params.merge(user_id: current_user.id))
 
     respond_to do |format|
       if @company.save
@@ -80,7 +80,7 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:name)
+      params.require(:company).permit(:name, :user_id, :industry_id)
     end
 
     # Check authority for editing somebody's company
