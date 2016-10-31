@@ -21,11 +21,13 @@ class CompaniesController < ApplicationController
   # GET /companies/new
   def new
     @company = Company.new
+    @disabled = false
   end
 
   # GET /companies/1/edit
   def edit
     @path = 'companies_path'
+    @disabled = true
   end
 
   # POST /companies

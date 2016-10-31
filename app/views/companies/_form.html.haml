@@ -14,7 +14,7 @@
   .form-group.row
     = f.label :industry, class: 'col-xs-4 form-control-label'
     .col-xs-8.col-sm-4
-      = f.select :industry_id, options_from_collection_for_select(Industry.all, :id, :name, params[:industry]), {}, {class: "form-control c-select"}
+      = f.select :industry_id, options_from_collection_for_select(Industry.all, :id, :name, params[:industry]), {}, {class: "form-control c-select", disabled: @disabled}
 
   - if params[:new_record]
     = hidden_field_tag(:new_record, true)
