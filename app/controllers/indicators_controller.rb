@@ -6,7 +6,8 @@ class IndicatorsController < ApplicationController
   # GET /indicators
   # GET /indicators.json
   def index
-    @indicators = Indicator.order(:order)
+    @industry_id = params[:industry] || 1
+    @indicators = Indicator.where(industry_id: [0, @industry_id]).order(:order)
   end
 
   # GET /indicators/1

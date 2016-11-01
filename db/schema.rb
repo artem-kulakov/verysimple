@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026051241) do
+ActiveRecord::Schema.define(version: 20161101050936) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -38,12 +38,14 @@ ActiveRecord::Schema.define(version: 20161026051241) do
 
   create_table "indicators", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "order"
     t.integer  "type_id"
+    t.integer  "industry_id"
   end
 
+  add_index "indicators", ["industry_id"], name: "index_indicators_on_industry_id"
   add_index "indicators", ["type_id"], name: "index_indicators_on_type_id"
 
   create_table "industries", force: :cascade do |t|

@@ -42,13 +42,18 @@ end
   'Operating cash flow',
   'Capital expenditure',
   'Net debt'].each_with_index do |indicator, index|
-    Indicator.create!(name: indicator, order: index, type_id: 1)
+    Indicator.create!(name: indicator, order: index, type_id: 1, industry_id: 0)
 end
 
 [ 'Oil-equivalent production',
   'Liquids production',
   'Natural gas production'].each_with_index do |indicator, index|
-    Indicator.create!(name: indicator, order: index+6, type_id: 2)
+    Indicator.create!(name: indicator, order: index+6, type_id: 2, industry_id: 1)
+end
+
+[ 'ARPU',
+  'Customer base'].each_with_index do |indicator, index|
+    Indicator.create!(name: indicator, order: index+6, type_id: 2, industry_id: 2)
 end
 
 
