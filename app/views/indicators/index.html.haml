@@ -26,7 +26,7 @@
               %td
                 = indicator.type.name
               %td.text-xs-right.text-nowrap
-                = link_to 'Edit', edit_indicator_path(indicator), :class => 'btn btn-success btn-sm'
+                = link_to 'Edit', edit_indicator_path(indicator, industry: @industry_id), :class => 'btn btn-success btn-sm'
                 = link_to 'Delete', indicator, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-sm'
 
       .form-group

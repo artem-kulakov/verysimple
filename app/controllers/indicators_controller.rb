@@ -21,12 +21,16 @@ class IndicatorsController < ApplicationController
     
     @industries = Industry.all
     @industry_id = params[:industry] || 1
+
+    @disabled = false
   end
 
   # GET /indicators/1/edit
   def edit
-    @types = Type.all
-    @type_id = @indicator.type_id
+    @industries = Industry.all
+    @industry_id = params[:industry] || 1
+
+    @disabled = true
   end
 
   # GET /indicators/reorder
