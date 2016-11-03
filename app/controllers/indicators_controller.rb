@@ -19,8 +19,8 @@ class IndicatorsController < ApplicationController
   def new
     @indicator = Indicator.new(order: Indicator.count)
     
-    @types = Type.all
-    @type_id = @indicator.type_id
+    @industries = Industry.all
+    @industry_id = params[:industry] || 1
   end
 
   # GET /indicators/1/edit

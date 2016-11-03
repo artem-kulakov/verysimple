@@ -7,18 +7,18 @@
           %li= msg
 
   .form-group.row
-    = f.label :name, class: 'col-xs-5 form-control-label'
-    .col-xs-7
+    = f.label :name, class: 'col-xs-4 form-control-label'
+    .col-xs-8.col-sm-4
       = f.text_field :name, class: 'form-control', :autofocus => true
       = f.hidden_field :order, value: @indicator.order
   
   .form-group.row
-    = f.label :type, class: 'col-xs-5 form-control-label'
-    .col-xs-7
-      = f.select :type_id, options_from_collection_for_select(@types, :id, :name, @type_id), {}, {class: "form-control c-select"}
+    = f.label :industry, class: 'col-xs-4 form-control-label'
+    .col-xs-8.col-sm-4
+      = f.select :industry_id, options_from_collection_for_select(@industries, :id, :name, @industry_id), {}, {class: "form-control c-select"}
 
   .form-group.row
-    .col-xs-5
-    .col-xs-7
+    .col-xs-4
+    .col-xs-8
       = f.submit 'Save', class: "btn btn-#{@color}"
-      = link_to 'Cancel', indicators_path, class: 'btn btn-secondary'
+      = link_to 'Cancel', indicators_path(industry: @industry_id), class: 'btn btn-secondary'
