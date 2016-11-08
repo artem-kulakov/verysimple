@@ -67,7 +67,7 @@ end
 end
 
 [['kboe/d', 1],
- ['bcf/d', 1/5.8]].each do |name, multiplier|
+ ['bcf/d', 1/0.0058]].each do |name, multiplier|
   Unit.create!(name: name, type_id: 2, multiplier: multiplier)
 end
 
